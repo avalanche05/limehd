@@ -4,7 +4,7 @@ from limehd.models import channel as db_model_channel
 from limehd import schemas, serializers
 
 
-def get_channel(db: Session, db_channel: db_model_channel) -> schemas.Channel:
+def get_channel(db: Session, db_channel: db_model_channel.Channel) -> schemas.Channel:
     channel = schemas.Channel(
         id=db_channel.id,
         name=db_channel.name,
