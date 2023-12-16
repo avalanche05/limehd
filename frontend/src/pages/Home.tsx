@@ -1,4 +1,4 @@
-import { SearchOutlined } from "@ant-design/icons";
+import { SearchOutlined, StarOutlined } from "@ant-design/icons";
 import { observer } from "mobx-react-lite";
 
 const Home = observer(() => {
@@ -46,13 +46,9 @@ const Home = observer(() => {
               <h1 className="info__name">Вести, 12+</h1>
               <p className="info__rate">
                 Рейтинг: 8/10
-                <img
-                  className="rate-icon"
-                  src="images/star-svgrepo-com.svg"
-                  alt="star icon"
-                />
+                <StarOutlined className="rate-icon" />
               </p>
-              <div className="info__classNameify">
+              <div className="info__classify">
                 <span className="info__kategory">Категория</span>
                 <span className="info__genre">Жанр</span>
               </div>
