@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 from pydantic import BaseModel
 
 from .stream import Stream
@@ -7,8 +7,8 @@ from .stream import Stream
 class Program(BaseModel):
     id: int
     name: str
-    start: date
-    finish: date
+    start: datetime
+    finish: datetime
     rating: float
     genre: str
     category: str
