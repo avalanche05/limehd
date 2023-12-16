@@ -9,7 +9,7 @@ class Stream(BaseSqlModel):
     __tablename__ = 'streams'
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     start: Mapped[DateTime] = mapped_column(DateTime, nullable=False)
-    end: Mapped[DateTime] = mapped_column(DateTime, nullable=False)
+    finish: Mapped[DateTime] = mapped_column(DateTime, nullable=False)
     #relationship
     channel: Channel
     program: Program
