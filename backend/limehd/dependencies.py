@@ -2,7 +2,7 @@ from fastapi import Cookie, HTTPException, status, Depends
 from sqlalchemy.orm import Session
 from .db import SessionLocal
 import logging
-from . import models, service, utils
+from backend import models, service, utils
 
 
 

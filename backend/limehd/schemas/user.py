@@ -6,3 +6,4 @@ class User(BaseModel):
     email: str
     hashed_password: str
     fingerprint: str
+    
