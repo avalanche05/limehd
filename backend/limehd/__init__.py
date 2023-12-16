@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from . import db, routers, config
+from limehd.routers import user_router
 
 
 @asynccontextmanager
@@ -22,5 +23,7 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+    _app.include_router(user_router)
 
     return _app

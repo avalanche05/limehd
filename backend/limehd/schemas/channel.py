@@ -1,7 +1,5 @@
 from pydantic import BaseModel
 
-from .stream import Stream
-
 
 class Channel(BaseModel):
     id: int
@@ -11,4 +9,4 @@ class Channel(BaseModel):
     image: str
     is_favorite: bool
     stream_link: str
-    schedule: list[Stream]
+    schedule: list['Stream']

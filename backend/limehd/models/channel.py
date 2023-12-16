@@ -3,7 +3,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from limehd.db import BaseSqlModel
-from limehd.models import association_table_channel_user
+from .channel_user import association_table_channel_user
 
 
 class Channel(BaseSqlModel):
