@@ -6,7 +6,13 @@ services:
       context: .
       dockerfile: ./backend/Dockerfile
     ports:
-      - "8000:8000"  # Adjust the port mapping as needed
+      - "8000:8000"  
     volumes:
-      - .:/app     # Mount the current directory to /app in the container
+      - .:/app    
+  
+  messages:
+    build: messages/
+    depends_on:
+      - app
+    
 
