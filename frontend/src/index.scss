@@ -53,7 +53,7 @@ header {
     overflow: hidden;
     display: flex;
     align-items: center;
-    background-color: #40354E;
+    background-color: #40354e;
 }
 
 .search__box__input {
@@ -76,7 +76,6 @@ header {
     border: none;
     outline: none;
 }
-
 
 .search__box__icon {
     padding-right: 10px;
@@ -113,7 +112,7 @@ header {
 .programm-card {
     height: 200px;
     width: 100%;
-    background-image:  url('https://thumbs.dfs.ivi.ru/storage8/contents/c/3/aac667b78119a39fda0fe5620c7677.jpg/x215/?q=85');
+    background-image: url('https://thumbs.dfs.ivi.ru/storage8/contents/c/3/aac667b78119a39fda0fe5620c7677.jpg/x215/?q=85');
     background-position: 50% 50%;
     background-size: cover;
     overflow: hidden;
@@ -126,14 +125,13 @@ header {
     width: 100%;
     padding: 20px;
     color: #e5e5e5;
-    background-color: rgba(0,0,0, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .info__name {
     margin-top: 0;
     color: white;
 }
-
 
 .info__rate {
     display: flex;
@@ -143,7 +141,7 @@ header {
 .rate-icon {
     width: 16px;
     margin-left: 5px;
-    color: #DAED6D;
+    color: #daed6d;
 }
 
 .info__classify {
@@ -155,11 +153,10 @@ header {
     width: 100%;
     margin-bottom: 50px;
 
-    .programm-card  {
+    .programm-card {
         height: 500px;
     }
 }
-
 
 .other-recs {
     margin-bottom: 50px;
@@ -169,7 +166,6 @@ header {
 }
 
 .card-place {
-    
     flex: 1 1 100%;
 }
 @media (min-width: 900px) {
@@ -208,10 +204,10 @@ header {
     height: calc(100% - 52px);
     width: 300px;
     overflow: hidden;
-    background-color: #40354E;
+    background-color: #40354e;
     display: flex;
     flex-direction: column;
-    
+
     .header {
         margin: 10px 0 10px 15px;
         color: #fff;
@@ -228,7 +224,7 @@ header {
     padding: 5px 10px;
     color: #fff;
     text-decoration: none;
-    
+
     .logo {
         height: 100%;
         border-radius: 50%;
@@ -299,7 +295,7 @@ header {
         display: flex;
         flex-direction: column;
         gap: 10px;
-     
+
         .schedule-item {
             display: flex;
 
@@ -308,4 +304,4 @@ header {
             }
         }
     }
-} 
+}

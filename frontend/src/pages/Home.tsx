@@ -1,18 +1,23 @@
-import { observer } from "mobx-react-lite";
-import Header from "../components/Header";
-import HomeLayout from "../components/HomeLayout";
-import SideChannels from "../components/sideChannels";
+import { observer } from 'mobx-react-lite';
+import ProgrammCard from '../components/ProgrammCard';
 
 const Home = observer(() => {
-  return (
-    <>
-      <Header />
-      <div className="d-flex">
-        <SideChannels />
-        <HomeLayout />
-      </div>
-    </>
-  );
+    return (
+        <>
+            <section className='recs'>
+                <div className='container recs__container'>
+                    <div className='main-rec'>
+                        <ProgrammCard />
+                    </div>
+                    <div className='other-recs'>
+                        <div className='card-place'>
+                            <ProgrammCard />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </>
+    );
 });
 
 export default Home;
