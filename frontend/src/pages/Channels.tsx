@@ -1,18 +1,18 @@
 import { observer } from "mobx-react-lite";
 import Header from "../components/Header";
-import HomeLayout from "../components/HomeLayout";
 import SideChannels from "../components/sideChannels";
+import ChannelsLayout from "../components/ChannelsLayout";
 
-const Home = observer(() => {
+const Channels = observer(() => {
   return (
     <>
       <Header />
       <div className="d-flex">
         <SideChannels />
-        <HomeLayout />
+        <ChannelsLayout />
       </div>
     </>
   );
 });
 
-export default Home;
+export default Channels;
