@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300;1,400&family=PT+Sans+Caption:wght@400;700&display=swap');
+
 * {
     margin: 0;
 }
@@ -7,4 +9,241 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.app {
+    background-color: #121212;
+}
+
+.container {
+    padding: 0 40px;
+    max-width: 1400px;
+    width: calc(100% - 80px);
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    background-color: #121212;
+}
+
+.header__container {
+    display: flex;
+    gap: 20px;
+}
+
+.search {
+    padding: 10px 20px;
+}
+
+.search__box {
+    height: 32px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-color: #40354E;
+}
+
+.search__box__input {
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 0 8px;
+    color: white;
+    height: 100%;
+    width: 300px;
+}
+
+.search__box__input::placeholder {
+    color: #9f9aa6;
+}
+
+.search__box__input:focus {
+    border: none;
+    outline: none;
+}
+
+
+.search__box__icon {
+    padding-right: 10px;
+    background-color: transparent;
+    border: none;
+    height: 100%;
+}
+
+.search__box__icon_image > svg {
+    margin-top: 3px;
+    font-size: 18px;
+    color: #9f9aa6;
+}
+
+.nav__list {
+    height: 100%;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+    color: white;
+    list-style-type: none;
+    gap: 15px;
+}
+
+.item__link {
+    text-decoration: none;
+    color: white;
+}
+
+.recs {
+    margin-left: 300px;
+    padding: 52px 0;
+}
+
+.programm-card {
+    height: 100%;
+    width: 100%;
+    background-image:  url('https://thumbs.dfs.ivi.ru/storage8/contents/c/3/aac667b78119a39fda0fe5620c7677.jpg/x215/?q=85');
+    background-position: 50% 50%;
+    background-size: cover;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+}
+
+.programm-card__info {
+    margin-top: auto;
+    width: 100%;
+    padding: 20px;
+    color: #e5e5e5;
+    background-color: rgba(0,0,0, 0.2);
+}
+
+.info__name {
+    margin-top: 0;
+    color: white;
+}
+
+
+.info__rate {
+    display: flex;
+    align-items: center;
+}
+
+.rate-icon {
+    width: 16px;
+    margin-left: 5px;
+    color: #DAED6D;
+}
+
+.info__classify {
+    display: flex;
+    gap: 10px;
+}
+
+.main-rec {
+    height: 500px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+
+.other-recs {
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.card-place {
+    height: 200px;
+    flex: 1 1 100%;
+}
+@media (min-width: 640px) {
+    .card-place {
+        flex-basis: calc((100% / 2) - 1rem); // 2 across at tabletish
+    }
+}
+@media (min-width: 1024px) {
+    .card-place {
+        flex-basis: calc((100% / 3) - 2rem); // 3 across at desktop
+    }
+}
+@media (min-width: 1300px) {
+    .card-place {
+        flex-basis: calc((100% / 4) - 3rem); // 4 across at desktop
+    }
+}
+
+.channels-title {
+    font-size: 2em;
+    font-weight: 600;
+    color: #fff;
+}
+
+.channels-list {
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.channel-card {
+    height: 100%;
+    width: 100%;
+}
+
+.sidenav {
+    position: fixed;
+    top: 52px;
+    height: calc(100% - 52px);
+    width: 300px;
+    overflow: hidden;
+    background-color: #40354E;
+    display: flex;
+    flex-direction: column;
+    
+    .header {
+        margin: 10px 0 10px 15px;
+        color: #fff;
+        font-weight: 500;
+        font-size: 1.2em;
+    }
+}
+
+.channel-item {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 20px);
+    height: 2.2rem;
+    padding: 5px 10px;
+    color: #fff;
+    text-decoration: none;
+    
+    .logo {
+        height: 100%;
+        border-radius: 50%;
+    }
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+    }
+
+    .name {
+        
+    }
+
+    .stream {
+        font-size: 0.8em;
+        color: #9f9aa6;
+    }
 }
