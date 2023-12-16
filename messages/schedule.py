@@ -8,7 +8,7 @@ from sqlalchemy import create_engine
 from scheduler import Scheduler
 
 from models import User
-from mailing import mailing
+from mailing import send_mail
 
 
 db_url = os.getenv('db_url')
@@ -21,26 +21,20 @@ schedule = Scheduler()
 user_program = set()
 while True:
     users = session.query(User).all()
-    print(len(users))
     for user in users:
         if user.email:
-            print(2)
             for program in user.programs:
-                print(3)
                 if (user.id, program.id) not in user_program:
                     for stream in program.streams:
-                        print(program.name)
-                        print(stream.channel.name)
-                        print(stream.start)
                         data = {
                             'program_name': program.name,
                             'channel': stream.channel.name,
-                            'time': stream.start,
+                            'time': stream.start.strftime("%H:%M"),
+                            'link': stream.channel.stream_link
                         }
-                        partial_foo = partial(mailing, data, user.email)
-                        schedule.once(stream.start - timedelta(minutes=10), partial_foo)
-                        print(stream.start - timedelta(minutes=10))
+                        # partial_foo = partial(mailing, data, 'fadeevvanya@gmail.com')
+                        schedule.once(stream.start - timedelta(10), send_mail, args=(data, user.email, ))
                 user_program.add((user.id, program.id))
-                print([user.id, program.id])
 
+    schedule.exec_jobs()
     time.sleep(60)

@@ -17,7 +17,7 @@ SERVICE_MAIL_PASSWORD = os.getenv('SERVICE_MAIL_PASSWORD')
 SERVICE_MAIL_HOST = os.getenv('SERVICE_MAIL_HOST')
 
 
-def mailing(data: dict, address: str):
+def send_mail(data: dict, address: str):
     smtp_server = SERVICE_MAIL_HOST
     port = 587
     sender_email = SERVICE_MAIL_USER
@@ -32,9 +32,9 @@ def mailing(data: dict, address: str):
             TEMPLATES.get_template("template.html").render(**data),
             "html",
         )
+        msg['Subject'] = 'Напоминание о трансляции'
         server.send_message(msg, sender_email, address)
     except Exception as e:
-        # Print any error messages to stdout
         print(e)
     finally:
         server.quit()

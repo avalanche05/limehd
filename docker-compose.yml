@@ -14,5 +14,7 @@ services:
     build: messages/
     depends_on:
       - app
+    env_file:
+      - ./messages/.env
     
 
