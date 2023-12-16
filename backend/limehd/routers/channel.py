@@ -44,7 +44,7 @@ def add_channel_rating(
         db: Session = Depends(get_db),
 ) -> dict:
     crud.update_channel_rating(db, channel_id=channel_id, mark=mark)
-    return {"message": f"Rating updated for channel with ID {id}"}
+    return {"message": f"Rating updated for channel with ID {channel_id}"}
 
 
 @channel_router.post(path="/{channel_id}/like")

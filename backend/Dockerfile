@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8000
 
 # Run app.py when the container launches
-CMD ["uvicorn", "limehd.main:app"]
+CMD ["uvicorn", "limehd.main:app", "--host", "0.0.0.0"]

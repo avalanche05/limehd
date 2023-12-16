@@ -43,6 +43,6 @@ def update_channel_rating(
 
     if channel:
         channel.votes_count += 1
-        channel.rating = ((channel.rating * (channel.votes_count - 1)) + mark) / channel.votes_count
+        channel.rating = ((float(channel.rating) * (channel.votes_count - 1)) + int(mark)) / channel.votes_count
 
         db.commit()
