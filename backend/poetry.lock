@@ -558,6 +558,17 @@ typing-extensions = {version = ">=3.10.0", markers = "python_version < \"3.10\""
 full = ["httpx (>=0.22.0)", "itsdangerous", "jinja2", "python-multipart", "pyyaml"]
 
 [[package]]
+name = "strsim"
+version = "0.0.3"
+description = "A library implementing different string similarity and distance measures"
+optional = false
+python-versions = "*"
+files = [
+    {file = "strsim-0.0.3-py3-none-any.whl", hash = "sha256:e5cf287392f906f0c6338dba8173ba9a05d8c3c173a74082c91220421d64d9fc"},
+    {file = "strsim-0.0.3.tar.gz", hash = "sha256:250cf1f698eceb00856cb368a417790d5f951bdc6329a799d89c6f6b85e41bcb"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.9.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -607,4 +618,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "bca95165819760e885081f0456ff9e3974bcc87f9fad6854cea0558b97c1b054"
+content-hash = "9b655779e15315550e9551ff5a361613e1e4cd314cf5698edb8ee2c29fddf4b7"

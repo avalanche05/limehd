@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 
 from limehd import schemas, crud, serializers, models
 from limehd.dependencies import get_db, current_user
+from datetime import datetime
 
 channel_router = APIRouter(
     prefix="/channel",
@@ -14,13 +15,15 @@ channel_router = APIRouter(
 def get_channels(
         response: Response,
         search_name: str = None,
+        start: datetime = None,
+        finish: datetime = None,
         user: models.User = Depends(current_user),
         db: Session = Depends(get_db),
 ) -> list[schemas.Channel]:
     cookie = user.fingerprint
     response.set_cookie(key='fingerprint', value=cookie)
 
-    channels = crud.get_channels(db, search_name=search_name)
+    channels = crud.get_channels(db, search_name=search_name, start=start, finish=finish)
     return serializers.get_channels(channels, user.id)
 
 
