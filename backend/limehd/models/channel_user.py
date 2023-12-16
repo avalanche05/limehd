@@ -1,6 +1,6 @@
 from sqlalchemy import Table, Column, ForeignKey
 
-from limehd.models import BaseSqlModel
+from limehd.db import BaseSqlModel
 
 association_table_channel_user = Table(
     "association_table_channel_user",

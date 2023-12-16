@@ -1,8 +1,6 @@
 from datetime import datetime
 from pydantic import BaseModel
 
-from .stream import Stream
-
 
 class Program(BaseModel):
     id: int
@@ -13,4 +11,4 @@ class Program(BaseModel):
     genre: str
     category: str
     image: str
-    streams: list[Stream]
+    streams: list['Stream']

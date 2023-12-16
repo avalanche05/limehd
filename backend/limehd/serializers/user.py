@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from backend.limehd.models import user as db_model_user
-from backend.limehd import schemas, serializers
+from limehd.models import user as db_model_user
+from limehd import schemas, serializers
 
 
 def get_user(db_user: db_model_user.User) -> schemas.User:

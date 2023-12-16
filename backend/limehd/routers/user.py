@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Body, Depends, HTTPException, Response
 from requests import Session
 
-from backend.limehd import schemas, crud, serializers, models
-from backend.limehd.dependencies import get_db, current_user
+from limehd import schemas, crud, serializers, models
+from limehd.dependencies import get_db, current_user
 
 user_router = APIRouter(
     prefix="/user",

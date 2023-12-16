@@ -2,7 +2,7 @@ from sqlalchemy import Integer, Float, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from limehd.db import BaseSqlModel
-from limehd.models import association_table_program_user, ass
+from .program_user import association_table_program_user
 
 
 class Program(BaseSqlModel):

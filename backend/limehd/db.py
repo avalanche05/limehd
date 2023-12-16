@@ -18,6 +18,3 @@ class BaseSqlModel(DeclarativeBase):
     updated_at: Mapped[datetime] = mapped_column(
         DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
     )
-
-
-BaseSqlModel.metadata.create_all(engine)
