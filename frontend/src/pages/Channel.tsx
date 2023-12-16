@@ -1,6 +1,17 @@
 import { StarOutlined } from "@ant-design/icons";
 import { observer } from "mobx-react-lite";
 
+const ScheduleItem = observer(() => {
+  return (
+    <>
+      <div className="programm">
+        <div className="time">21:00</div>
+        <div className="name">"Клуб Веселых и Находчивых". Высшая лига</div>
+      </div>
+    </>
+  );
+});
+
 const Channel = observer(() => {
   return (
     <>
@@ -20,6 +31,13 @@ const Channel = observer(() => {
                 Рейтинг канала: 8/10
                 <StarOutlined className="rate-icon" />
               </p>
+            </div>
+          </div>
+          <div className="channel-schedule">
+            <span className="schedule-title">Расписание</span>
+            <div className="schedule-list">
+              <ScheduleItem />
+              <ScheduleItem />
             </div>
           </div>
         </div>
