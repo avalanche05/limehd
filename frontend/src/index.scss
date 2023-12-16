@@ -80,12 +80,23 @@ header {
     outline: none;
 }
 
-.search__box__icon {
-    padding-right: 10px;
-    background-color: transparent;
-    border: none;
-    height: 100%;
+.search__box.focus {
+    outline: 1.6px solid #DAED6D;
 }
+
+.search__box__submit {
+    background-color: transparent;
+    height: 100%;
+    border: none;
+    padding-right: 10px;
+    padding-left: 10px;
+    transition: .3s;
+}
+.search__box.focus .search__box__submit:hover {
+    background-color: #DAED6D;
+}
+
+
 
 .search__box__icon_image > svg {
     margin-top: 3px;
@@ -97,6 +108,15 @@ header {
     margin: auto 0;
 }
 
+.logout-icon {
+    color: #fff;
+    font-size: 1.25em;
+    transition: .2s;
+}
+.logout:hover .logout-icon {
+    color: #DAED6D;
+}
+
 .nav__list {
     height: 100%;
     padding-left: 0;
@@ -105,6 +125,26 @@ header {
     color: white;
     list-style-type: none;
     gap: 15px;
+}
+
+.nav__list__item {
+    position: relative;
+}
+
+.nav__list__item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    display: inline-block;
+    background-color: transparent;
+    height: 1.6px;
+    width: 100%;
+    transition: 0.2s;
+}
+.nav__list__item:hover::after {
+    bottom: -4px;
+    background-color: #DAED6D;
 }
 
 .item__link {
@@ -231,10 +271,11 @@ header {
 .channel-item {
     display: flex;
     align-items: center;
-    width: calc(100% - 20px);
-    padding: 5px 10px;
+    width: 100%;
+    padding: 8px 10px;
     color: #fff;
     text-decoration: none;
+    transition: .3s;
 
     .logo {
         height: 35px;
@@ -263,8 +304,11 @@ header {
 
     .stream {
         font-size: 0.8em;
-        color: #9f9aa6;
+        color: #DAED6D;
     }
+}
+.channel-item:hover {
+    background-color: #665d71;
 }
 
 .header-thumb {
