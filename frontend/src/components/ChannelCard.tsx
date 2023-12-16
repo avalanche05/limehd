@@ -1,34 +1,121 @@
-import { observer } from "mobx-react-lite";
+import { observer } from 'mobx-react-lite';
+import { IChannel } from '../api/models';
+import { Button, Rate, message } from 'antd';
+import { useStores } from '../hooks/useStores';
+import { useState } from 'react';
+import { FileAddOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
-const TvShow = observer(() => {
-  return (
-    <div className="schedule-item">
-      <div className="time">18:00</div>
-      <div className="tvshow-name">
-        Кубок Первого канала по хоккею-2023. Прямая трансляция из
-        Санкт-Петербурга. Сборная России - сборная Белоруссии
-      </div>
-    </div>
-  );
-});
+type Props = {
+    channel: IChannel | null;
+};
 
-const ChannelCard = observer(() => {
-  return (
-    <div className="channel-card">
-      <div className="prev">
-        <img
-          className="channel-logo"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/1%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB-5.svg/800px-1%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB-5.svg.png"
-          alt="Channel Logo"
-        />
-        <span className="name">Первый</span>
-      </div>
-      <div className="schedule">
-        <TvShow />
-        <TvShow />
-      </div>
-    </div>
-  );
+const convertOneDigitStringToTwoDigits = (digit: number) => {
+    return digit.toString().length === 1 ? `0${digit}` : digit;
+};
+
+const ChannelCard = observer(({ channel }: Props) => {
+    const { rootStore } = useStores();
+    const [messageApi, contextHolder] = message.useMessage();
+    const [isFavorite, setIsFavorite] = useState(channel?.is_favorite);
+
+    return (
+        <>
+            {contextHolder}
+            {channel ? (
+                <div className='channel-card'>
+                    <Link to={`/channels/${channel.id}`}>
+                        <div className='prev'>
+                            <img className='channel-logo' src={channel.image} alt='Channel Logo' />
+                            <span style={{ color: '#ffffff' }} className='name'>
+                                {channel.name}
+                            </span>
+                        </div>
+                    </Link>
+                    <div
+                        className='d-flex'
+                        style={{
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            marginBottom: 7,
+                        }}
+                    >
+                        <Rate
+                            allowHalf
+                            defaultValue={channel.rating}
+                            onChange={(value: number) =>
+                                rootStore
+                                    .postChannelRating(value, channel.id)
+                                    .then(() => {
+                                        messageApi.success('Отзыв добавлен');
+                                    })
+                                    .catch(() => {
+                                        messageApi.error('Ошибка добавления отзыва');
+                                    })
+                            }
+                        />
+
+                        <div>
+                            <Button
+                                style={{
+                                    marginLeft: 10,
+                                    backgroundColor: isFavorite ? '#4BB543' : '#ebedf5',
+                                    color: isFavorite ? '#fff' : '#6b7683',
+                                    border: 'none',
+                                }}
+                                type='default'
+                                shape='circle'
+                                onClick={() => {
+                                    rootStore
+                                        .postProgramLike(channel.id)
+                                        .then(() => {
+                                            if (!isFavorite) {
+                                                messageApi.success('Канал добавлен в избранные');
+                                            } else {
+                                                messageApi.success('Канал удален из избранных');
+                                            }
+
+                                            setIsFavorite(!isFavorite);
+                                        })
+                                        .catch(() => {
+                                            messageApi.error(
+                                                'Ошибка добавления канала в избранное'
+                                            );
+                                        });
+                                }}
+                                icon={<FileAddOutlined />}
+                            />
+                        </div>
+                    </div>
+                    <div className='schedule'>
+                        <div className='schedule-item'>
+                            <div className='tvshow-name'>
+                                {channel.description.slice(0, 100)}...
+                            </div>
+                        </div>
+                        {channel.schedule.map((schedule) => {
+                            return (
+                                <div className='schedule-item'>
+                                    <div className='time'>
+                                        {new Date(schedule.start).getHours()}:
+                                        {convertOneDigitStringToTwoDigits(
+                                            new Date(schedule.start).getMinutes()
+                                        )}
+                                        -{new Date(schedule.finish).getHours()}:
+                                        {convertOneDigitStringToTwoDigits(
+                                            new Date(schedule.finish).getMinutes()
+                                        )}
+                                    </div>
+
+                                    <div className='tvshow-name'>{schedule.program?.name}</div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            ) : null}
+        </>
+    );
 });
 
 export default ChannelCard;

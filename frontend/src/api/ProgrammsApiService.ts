@@ -22,7 +22,7 @@ export class ProgramsApiService {
     }
 
     async getChannels(params: IChannelsParams): Promise<IChannel[]> {
-        const response = await axios.get<IChannel[]>(`${API_URL}/channels`, {
+        const response = await axios.get<IChannel[]>(`${API_URL}/channel`, {
             headers: authHeader(),
             params,
         });

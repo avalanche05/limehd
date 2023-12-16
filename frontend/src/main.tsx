@@ -4,13 +4,16 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
 
 import './index.scss';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, theme } from 'antd';
+
+const { darkAlgorithm } = theme;
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
         <ConfigProvider
             theme={{
                 token: {},
+                algorithm: darkAlgorithm,
             }}
         >
             <RouterProvider router={router} />
