@@ -5,7 +5,6 @@ from sqlalchemy.engine import create_engine
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import sessionmaker, Mapped, mapped_column
 
-
 from .config import config
 
 db_url = f"postgresql://{config.POSTGRES_USER}:{config.POSTGRES_PASSWORD}@{config.POSTGRES_SERVER}/{config.POSTGRES_DB}"
