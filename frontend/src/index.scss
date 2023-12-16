@@ -14,6 +14,7 @@
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
+    background-color: #121212;
 }
 
 .app {
@@ -102,7 +103,7 @@ header {
 
 .recs {
     margin-left: 300px;
-    padding: 52px 0;
+    padding: 20px 0;
 }
 
 .programm-card {
@@ -246,4 +247,9 @@ header {
         font-size: 0.8em;
         color: #9f9aa6;
     }
+}
+
+.thumb {
+    width: 100%;
+    height: 52px;
 }
