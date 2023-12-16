@@ -15,3 +15,8 @@ def get_user(user: models.User = Depends(current_user),
              db: Session = Depends(get_db)
              ) -> schemas.User:
     return serializers.get_user(user)
+
+
+@user_router.get(path="/subscriptions")
+def get_user_subsctiptions(db: Session = Depends(get_db)):
+    ...
