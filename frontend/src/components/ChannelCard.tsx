@@ -1,5 +1,17 @@
 import { observer } from "mobx-react-lite";
 
+const TvShow = observer(() => {
+  return (
+    <div className="schedule-item">
+      <div className="time">18:00</div>
+      <div className="tvshow-name">
+        Кубок Первого канала по хоккею-2023. Прямая трансляция из
+        Санкт-Петербурга. Сборная России - сборная Белоруссии
+      </div>
+    </div>
+  );
+});
+
 const ChannelCard = observer(() => {
   return (
     <div className="channel-card">
@@ -12,17 +24,8 @@ const ChannelCard = observer(() => {
         <span className="name">Первый</span>
       </div>
       <div className="schedule">
-        <div className="schedule-item">
-          <div className="time">18:00</div>
-          <div className="tvshow-name">
-            Кубок Первого канала по хоккею-2023. Прямая трансляция из
-            Санкт-Петербурга. Сборная России - сборная Белоруссии
-          </div>
-        </div>
-        <div className="schedule-item">
-          <div className="time">19:30</div>
-          <div className="tvshow-name">Вечерние новости (с субтитрами)</div>
-        </div>
+        <TvShow />
+        <TvShow />
       </div>
     </div>
   );
