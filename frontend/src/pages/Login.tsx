@@ -124,7 +124,7 @@ const Login = () => {
                                         loading={testLoading}
                                         onClick={onTestUserLogin}
                                     >
-                                        Продолжить без авторизации
+                                        Войти через тестового пользователя
                                     </Button>
                                 </Col>
                             </Row>

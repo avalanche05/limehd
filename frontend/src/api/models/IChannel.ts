@@ -11,7 +11,7 @@ export interface IChannel {
 
 export interface IStream {
     id: number;
-    channel: Omit<IChannel, 'schedule'>;
+    channelId: number;
     start: string;
     end: string;
     program: IProgram;
@@ -21,6 +21,7 @@ export interface IProgram {
     id: number;
     name: string;
     rating: number;
+    is_favorite: boolean;
     genre: string;
     category: string;
     image: string;

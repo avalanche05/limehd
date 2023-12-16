@@ -5,6 +5,21 @@ import { IChannel, IChannelsParams, IProgram, IProgramsParams } from './models';
 
 export class ProgramsApiService {
     async getPrograms(params: IProgramsParams): Promise<IProgram[]> {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        return [
+            {
+                id: 1,
+                name: 'test',
+                rating: 1,
+                genre: 'test',
+                is_favorite: false,
+                category: 'test',
+                image: 'https://thumbs.dfs.ivi.ru/storage8/contents/c/3/aac667b78119a39fda0fe5620c7677.jpg/x215/?q=85',
+                streams: [],
+            },
+        ];
+
         const response = await axios.get<IProgram[]>(`${API_URL}/programs`, {
             headers: authHeader(),
             params,
