@@ -1,9 +1,9 @@
-from sqlalchemy import Integer, Float, String, Boolean, List
+from sqlalchemy import Integer, Float, String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from limehd.db import BaseSqlModel
-from limehd.models import Stream
+from limehd.models import association_table_channel_user
 
 
 class Channel(BaseSqlModel):
@@ -16,3 +16,9 @@ class Channel(BaseSqlModel):
     description: Mapped[str] = mapped_column(String, nullable=True)
     image: Mapped[str] = mapped_column(String, nullable=True)
     stream_link: Mapped[str] = mapped_column(String, nullable=True)
+
+    subscribers: Mapped[list['User']] = relationship(
+        secondary=association_table_channel_user,
+        back_populates='channels'
+    )
+    streams: Mapped[list['Stream']] = relationship('Stream', back_populates='channel')

@@ -1,11 +1,10 @@
-from typing import List
-
 from sqlalchemy import Integer, Float, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import date
 
 from limehd.db import BaseSqlModel
+from limehd.models import association_table_program_user, ass
+
+
 class Program(BaseSqlModel):
     __tablename__ = 'programs'
 
@@ -19,4 +18,8 @@ class Program(BaseSqlModel):
     category: Mapped[str] = mapped_column(String, nullable=True)
     image: Mapped[str] = mapped_column(String, nullable=False)
 
-    streams = relationship()
+    streams: Mapped[list['Stream']] = relationship(back_populates='program')
+    subscribers: Mapped[list['User']] = relationship(
+        secondary=association_table_program_user,
+        back_populates='programs'
+    )
