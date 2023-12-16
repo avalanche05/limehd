@@ -101,7 +101,7 @@ body {
 .programm-card {
     height: 100%;
     width: 100%;
-    max-width: 700px;
+    
     background-image:  url('https://thumbs.dfs.ivi.ru/storage8/contents/c/3/aac667b78119a39fda0fe5620c7677.jpg/x215/?q=85');
     background-position: 50% 50%;
     background-size: cover;
@@ -143,6 +143,7 @@ body {
 .main-rec {
     height: 400px;
     width: 100%;
+    margin-bottom: 50px;
 }
 
 
@@ -165,6 +166,11 @@ body {
     @media (min-width: 1024px) {
         .card-place {
             flex-basis: calc((100% / 3) - 2rem); // 3 across at desktop
+        }
+    }
+    @media (min-width: 1300px) {
+        .card-place {
+            flex-basis: calc((100% / 4) - 3rem); // 4 across at desktop
         }
     }
 }
