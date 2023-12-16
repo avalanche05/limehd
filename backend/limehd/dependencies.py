@@ -17,6 +17,6 @@ def get_db():
 
 async def current_user(
         db: Session = Depends(get_db),
-        access_token: str | None=None,
+        access_token: str | None = None,
 ) -> models.User:
     pass
