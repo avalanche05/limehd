@@ -13,8 +13,10 @@ def get_channel_by_channel_id(db: Session, id: int) -> models.Channel:
     return channel
 
 
-def levenshtein_search(string1: str, string2: str, threshold: int = 3) -> bool:
-    return distance(string1, string2) <= threshold
+def comparator(item: str, search_name: str, threshold: int = 3) -> list:
+    item = item.lower().strip()
+    search_name = search_name.lower().strip()
+    return [distance(item, search_name), abs(len(item) - len(search_name)), len(item) - len(search_name)]
 
 
 def get_channels(
@@ -25,23 +27,21 @@ def get_channels(
 ) -> List[models.Channel]:
     query = db.query(models.Channel)
 
+    channels = query.all()
     if search_name:
-        channels = [channel for channel in channels if levenshtein_search(channel.name, search_name)]
+        channels = sorted(channels, key=lambda x: comparator(x.name, search_name))
+        channels = [channel for channel in channels if
+                    distance(channel.name.lower().strip(), search_name.lower().strip()) <= 3]
+        if distance(channels[0].name.lower().strip(), search_name.lower().strip()) == 0:
+            channels = channels[:1]
 
     if start and finish:
-        channel_ids = (
-            db.query(models.Channel.id)
-            .join(models.Channel.streams)
-            .filter(models.Stream.start >= start, models.Stream.finish <= finish)
-            .distinct()
-            .all()
-        )
-
-        channel_ids = [channel_id for (channel_id,) in channel_ids]
-
-        query = query.filter(models.Channel.id.in_(channel_ids))
-
-    channels = query.all()
+        for channel in channels:
+            streams = []
+            for stream in channel.streams:
+                if stream.start >= start and stream.finish <= finish:
+                    streams.append(stream)
+            channel.streams = streams
 
     return channels
 
