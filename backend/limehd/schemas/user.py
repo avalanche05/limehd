@@ -11,3 +11,8 @@ class User(BaseModel):
     fingerprint: str
     favorite_programs: list[Program]
     favorite_channels: list[Channel]
+
+
+class LoginSchema(BaseModel):
+    login: str | None
+    password: str | None

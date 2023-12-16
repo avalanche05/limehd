@@ -15,7 +15,6 @@ program_router = APIRouter(
 def get_program(name: str | None, genre: str | None, category: str | None,
                 db: Session = Depends(get_db)) -> schemas.Channel:
     program = crud.get_program()
-
     return serializers.get_program(program)
 
 
