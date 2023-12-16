@@ -557,6 +557,7 @@ header {
 
     .category {
         color:rgba(255, 255, 255, 0.76);
+        margin-left: 15px;
     }
 
     .genre {
@@ -565,6 +566,10 @@ header {
     }
 
     .rate {
+        margin-left: 2px;
+    }
+
+    .send-rate {
         margin: 20px 0;
         display: flex;
 

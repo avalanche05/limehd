@@ -1,4 +1,4 @@
-import { StarOutlined } from "@ant-design/icons";
+import { StarFilled, StarOutlined } from "@ant-design/icons";
 import { observer } from "mobx-react-lite";
 
 const Programm = observer(() => {
@@ -11,9 +11,13 @@ const Programm = observer(() => {
           alt=""
         />
         <h1 className="title">Маша и Медведь</h1>
+        <span className="rate">
+          9/10
+          <StarFilled className="rate-icon" />
+        </span>
         <span className="category">Категория</span>
         <span className="genre">Жанр</span>
-        <p className="rate">
+        <p className="send-rate">
           <div className="rate-score">
             <StarOutlined className="rate-icon" />
             <span>1</span>
