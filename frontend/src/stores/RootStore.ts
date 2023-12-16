@@ -48,6 +48,8 @@ export class RootStore {
         const channels = await ProgramsApiServiceInstanse.getChannels(params);
 
         this.setChannels(channels);
+
+        return channels;
     }
 
     async fetchUser() {

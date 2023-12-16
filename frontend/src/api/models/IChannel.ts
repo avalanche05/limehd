@@ -13,7 +13,7 @@ export interface IStream {
     id: number;
     channelId: number;
     start: string;
-    end: string;
+    finish: string;
     program: IProgram;
 }
 

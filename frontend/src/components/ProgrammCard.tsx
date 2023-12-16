@@ -13,7 +13,7 @@ const ProgrammCard = observer(({ program }: Props) => {
     const { rootStore } = useStores();
     const [messageApi, contextHolder] = message.useMessage();
     const date = new Date();
-    const [isFavorite, setIsFavorite] = useState(false);
+    const [isFavorite, setIsFavorite] = useState(program?.is_favorite);
 
     const stream = program?.streams[0];
 
@@ -29,11 +29,11 @@ const ProgrammCard = observer(({ program }: Props) => {
                 <div className='programm-card__info'>
                     <div className='info__percent'>
                         {(stream && date > new Date(stream.start)) ??
-                        date < new Date(stream?.end as string) ? (
+                        date < new Date(stream?.finish as string) ? (
                             <Progress
                                 percent={
                                     (date.getTime() - new Date(stream?.start as string).getTime()) /
-                                    (new Date(stream?.end as string).getTime() -
+                                    (new Date(stream?.finish as string).getTime() -
                                         new Date(stream?.start as string).getTime())
                                 }
                             />
@@ -57,7 +57,7 @@ const ProgrammCard = observer(({ program }: Props) => {
                                 shape='circle'
                                 onClick={() => {
                                     rootStore
-                                        .postProgramLike(program.id)
+                                        .postChannelLike(program.id)
                                         .then(() => {
                                             if (!isFavorite) {
                                                 messageApi.success(
@@ -73,7 +73,7 @@ const ProgrammCard = observer(({ program }: Props) => {
                                         })
                                         .catch(() => {
                                             messageApi.error(
-                                                'Ошибка добавления отделения в избранное'
+                                                'Ошибка добавления канала в избранное'
                                             );
                                         });
                                 }}

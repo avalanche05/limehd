@@ -217,6 +217,8 @@ header {
     background-color: #40354e;
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     .header {
         margin: 10px 0 10px 15px;
@@ -246,6 +248,7 @@ header {
 
     .logo {
         height: 100%;
+        flex-shrink: 0;
     }
 
     .info {
@@ -253,7 +256,7 @@ header {
         flex-direction: column;
         margin-left: 10px;
     }
-    
+
     .name {
         font-weight: 500;
     }
@@ -329,7 +332,7 @@ header {
 
 .category-title {
     margin-bottom: 10px;
-    color: rgba(255, 255, 255, 0.80);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .search-response {
@@ -356,7 +359,6 @@ header {
         margin: 30px 0;
     }
 }
-
 
 .channel-simplify-card {
     overflow: hidden;
@@ -389,7 +391,7 @@ header {
         }
 
         .desc {
-            color:rgba(255, 255, 255, 0.76);
+            color: rgba(255, 255, 255, 0.76);
         }
     }
 }
@@ -411,13 +413,12 @@ header {
     }
 
     .title {
-        font-family: "Montserrat", sans-serif;
+        font-family: 'Montserrat', sans-serif;
         font-weight: 500;
         font-size: 1.4em;
         margin-top: 50px;
     }
 }
-
 
 .channel {
     .channel-container {
@@ -447,14 +448,14 @@ header {
         font-size: 1.1em;
 
         .name {
-            font-family: "Montserrat", sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 2em;
         }
 
         .desc {
             margin-top: 10px;
             margin-left: 2px;
-            color:rgba(255, 255, 255, 0.76);
+            color: rgba(255, 255, 255, 0.76);
         }
 
         .rate {
@@ -465,7 +466,7 @@ header {
 
     .schedule-title {
         font-size: 1.8em;
-        color: rgba(255, 255, 255, 0.80);
+        color: rgba(255, 255, 255, 0.8);
     }
 
     .schedule-list {
@@ -491,7 +492,6 @@ header {
             }
 
             .name {
-                
                 font-size: 1.5em;
             }
         }
