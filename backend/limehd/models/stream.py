@@ -1,6 +1,5 @@
-from sqlalchemy import Integer, Float, String, DateTime
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import ForeignKey, DateTime, Integer
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 
 from limehd.db import BaseSqlModel
 
@@ -9,7 +8,9 @@ class Stream(BaseSqlModel):
     __tablename__ = 'streams'
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     start: Mapped[DateTime] = mapped_column(DateTime, nullable=False)
-    end: Mapped[DateTime] = mapped_column(DateTime, nullable=False)
-    #relationship
-    channel: Channel
-    program: Program
+    finish: Mapped[DateTime] = mapped_column(DateTime, nullable=False)
+    channel_id: Mapped[int] = mapped_column(Integer, ForeignKey('channels.id'))
+    program_id: Mapped[int] = mapped_column(Integer, ForeignKey('programs.id'))
+
+    channel: Mapped['Channel'] = relationship('Channel', back_populates='streams')
+    program: Mapped['Program'] = relationship('Program', back_populates='streams')

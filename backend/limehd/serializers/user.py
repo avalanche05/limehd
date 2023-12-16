@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from backend.limehd.models import user as db_model_user
-from backend.limehd import schemas, serializers
+from limehd.models import user as db_model_user
+from limehd import schemas, serializers
 
 
 def get_user(db_user: db_model_user.User) -> schemas.User:
@@ -10,8 +10,8 @@ def get_user(db_user: db_model_user.User) -> schemas.User:
         email=db_user.email,
         hashed_password=db_user.hashed_password,
         fingerprint=db_user.fingerprint,
-        favorite_programs=get_favorite_programs(),
-        favorite_channels=get_favorite_channels()
+        favorite_programs=db_user.programs,
+        favorite_channels=db_user.channels
     )
 
     return user

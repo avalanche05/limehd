@@ -9,5 +9,5 @@ class Stream(BaseModel):
     id: int
     channel: Channel
     start: datetime
-    end: datetime
+    finish: datetime
     program: Program
