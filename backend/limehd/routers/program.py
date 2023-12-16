@@ -16,14 +16,14 @@ def get_program(name: str | None, genre: str | None, category: str | None,
                 db: Session = Depends(get_db)) -> schemas.Channel:
     program = crud.get_program()
 
-    return program
+    return serializers.get_program(program)
 
 
 @program_router.get(path="/{id}")
-def get_program_by_id(id: int, db: Session = Depends(get_db)) -> schemas.Program:
+def get_program_by_program_id(id: int, db: Session = Depends(get_db)) -> schemas.Program:
     program = crud.get_program_by_id()
 
-    return program
+    return serializers.get_program(program)
 
 
 @program_router.post(path="/{id}/rating")

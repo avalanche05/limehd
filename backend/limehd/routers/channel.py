@@ -19,16 +19,16 @@ def get_channel(channel_name: str,
                 ) -> schemas.Channel:
     channel = crud.get_channel(...)
 
-    return channel
+    return serializers.get_channel(channel)
 
 
 @channel_router.get(path="/{id}")
 def get_channel_by_channel_id(id: int,
                               db: Session = Depends(get_db),
                               ) -> schemas.Channel:
-    channel = crud.get_channel_by_id(...)
+    channel = crud.get_channel_by_channel_id(...)
 
-    return channel
+    return serializers.get_channel(channel)
 
 
 @channel_router.post(path="/{id}/rating")
