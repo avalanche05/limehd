@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from backend.limehd.models import stream as db_model_stream
-from backend.limehd import schemas, serializers
+from limehd.models import stream as db_model_stream
+from limehd import schemas, serializers
 
 
 def get_stream(db: Session, db_stream: db_model_stream) -> schemas.Stream:

@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from backend.limehd.models import program as db_model_program
-from backend.limehd import schemas, serializers
+from limehd.models import program as db_model_program
+from limehd import schemas, serializers
 
 
 def get_program(db: Session, db_program: db_model_program) -> schemas.Program:

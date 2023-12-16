@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from backend.limehd.models import channel as db_model_channel
-from backend.limehd import schemas, serializers
+from limehd.models import channel as db_model_channel
+from limehd import schemas, serializers
 
 
 def get_channel(db: Session, db_channel: db_model_channel) -> schemas.Channel:
