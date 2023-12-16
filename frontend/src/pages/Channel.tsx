@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 const ScheduleItem = observer(() => {
   return (
     <>
-      <div className="programm">
+      <div className="tvshow">
         <div className="time">21:00</div>
         <div className="name">"Клуб Веселых и Находчивых". Высшая лига</div>
       </div>
