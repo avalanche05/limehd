@@ -12,12 +12,12 @@ channel_router = APIRouter(
 
 
 @channel_router.get(path="")
-def get_channel_by_channel_name(channel_name: str,
-                                start: datetime,
-                                end: datetime,
-                                db: Session = Depends(get_db),
-                                ) -> schemas.Channel:
-    channel = crud.get_channel_by_channel_name(...)
+def get_channel(channel_name: str,
+                start: datetime,
+                end: datetime,
+                db: Session = Depends(get_db),
+                ) -> schemas.Channel:
+    channel = crud.get_channel(...)
 
     return channel
 
@@ -26,7 +26,7 @@ def get_channel_by_channel_name(channel_name: str,
 def get_channel_by_channel_id(id: int,
                               db: Session = Depends(get_db),
                               ) -> schemas.Channel:
-    channel = crud.get_channel_by_channel_id(...)
+    channel = crud.get_channel_by_id(...)
 
     return channel
 
