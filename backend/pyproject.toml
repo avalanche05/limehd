@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "limehd"
+version = "0.1.0"
+description = ""
+authors = ["Ilin Ivan <buran05@icloud.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.105.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
