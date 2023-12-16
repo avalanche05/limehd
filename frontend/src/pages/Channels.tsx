@@ -7,8 +7,10 @@ const Channels = observer(() => {
   return (
     <>
       <Header />
-      <SideChannels />
-      <ChannelsLayout />
+      <div className="d-flex">
+        <SideChannels />
+        <ChannelsLayout />
+      </div>
     </>
   );
 });

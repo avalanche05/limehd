@@ -7,8 +7,10 @@ const Home = observer(() => {
   return (
     <>
       <Header />
-      <SideChannels />
-      <HomeLayout />
+      <div className="d-flex">
+        <SideChannels />
+        <HomeLayout />
+      </div>
     </>
   );
 });

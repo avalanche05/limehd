@@ -39,7 +39,7 @@ const Header = observer(() => {
           </div>
         </div>
       </header>
-      <div className="thumb"></div>
+      <div className="header-thumb"></div>
     </>
   );
 });

@@ -4,6 +4,10 @@
     margin: 0;
 }
 
+.d-flex {
+    display: flex;
+}
+
 .auth {
     display: flex;
     justify-content: center;
@@ -15,6 +19,7 @@ body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     background-color: #121212;
+    color: white;
 }
 
 .app {
@@ -102,12 +107,11 @@ header {
 }
 
 .recs {
-    margin-left: 300px;
-    padding: 20px 0;
+    padding: 20px;
 }
 
 .programm-card {
-    height: 100%;
+    height: 200px;
     width: 100%;
     background-image:  url('https://thumbs.dfs.ivi.ru/storage8/contents/c/3/aac667b78119a39fda0fe5620c7677.jpg/x215/?q=85');
     background-position: 50% 50%;
@@ -148,9 +152,12 @@ header {
 }
 
 .main-rec {
-    height: 500px;
     width: 100%;
     margin-bottom: 50px;
+
+    .programm-card  {
+        height: 500px;
+    }
 }
 
 
@@ -163,7 +170,7 @@ header {
 }
 
 .card-place {
-    height: 200px;
+    
     flex: 1 1 100%;
 }
 @media (min-width: 640px) {
@@ -171,7 +178,7 @@ header {
         flex-basis: calc((100% / 2) - 1rem); // 2 across at tabletish
     }
 }
-@media (min-width: 1024px) {
+@media (min-width: 1124px) {
     .card-place {
         flex-basis: calc((100% / 3) - 2rem); // 3 across at desktop
     }
@@ -194,11 +201,6 @@ header {
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: space-between;
-}
-
-.channel-card {
-    height: 100%;
-    width: 100%;
 }
 
 .sidenav {
@@ -239,17 +241,68 @@ header {
         margin-left: 10px;
     }
 
-    .name {
-        
-    }
-
     .stream {
         font-size: 0.8em;
         color: #9f9aa6;
     }
 }
 
-.thumb {
+.header-thumb {
     width: 100%;
     height: 52px;
 }
+
+.sidenav-thumb {
+    min-width: 300px;
+    height: calc(100vh - 52px);
+}
+
+.channels-container {
+    padding: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.channel-card {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 7px 10px;
+    height: max-content;
+
+    .prev {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        height: 40px;
+        margin-bottom: 15px;
+
+        .channel-logo {
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .name {
+            font-weight: 500;
+            font-size: 1.2em;
+        }
+    }
+
+    .schedule {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+     
+        .schedule-item {
+            display: flex;
+
+            .time {
+                min-width: 50px;
+            }
+        }
+    }
+} 

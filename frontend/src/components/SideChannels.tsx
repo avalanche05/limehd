@@ -18,12 +18,15 @@ const SideChannelsItem = observer(() => {
 
 const SideChannels = observer(() => {
   return (
-    <div className="sidenav">
-      <span className="header">Каналы</span>
-      <SideChannelsItem />
-      <SideChannelsItem />
-      <SideChannelsItem />
-    </div>
+    <>
+      <div className="sidenav">
+        <span className="header">Каналы</span>
+        <SideChannelsItem />
+        <SideChannelsItem />
+        <SideChannelsItem />
+      </div>
+      <div className="sidenav-thumb"></div>
+    </>
   );
 });
 
