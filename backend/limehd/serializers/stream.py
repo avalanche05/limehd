@@ -4,13 +4,17 @@ from limehd.models import stream as db_model_stream
 from limehd import schemas, serializers
 
 
-def get_stream(db: Session, db_stream: db_model_stream.Stream) -> schemas.Stream:
+def get_stream(db_stream: db_model_stream.Stream) -> schemas.Stream:
     stream = schemas.Stream(
         id=db_stream.id,
-        channel=db_stream.channel,
+        channel_id=db_stream.channel_id,
         start=db_stream.start,
         finish=db_stream.finish,
-        program=db_stream.program
+        program_id=db_stream.program_id
     )
 
     return stream
+
+
+def get_streams(db_streams: list[db_model_stream.Stream]) -> list[schemas.Stream]:
+    return [get_stream(db_streams) for db_stream in db_streams]
