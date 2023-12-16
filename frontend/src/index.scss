@@ -40,12 +40,14 @@ header {
 }
 
 .header__container {
+    padding: 0 20px 0 15px;
     display: flex;
-    gap: 20px;
+    border-bottom: 1px solid #40354e;
 }
 
 .search {
     padding: 10px 20px;
+    margin-left: auto;
 }
 
 .search__box {
@@ -89,6 +91,10 @@ header {
     margin-top: 3px;
     font-size: 18px;
     color: #9f9aa6;
+}
+
+.logout {
+    margin: auto 0;
 }
 
 .nav__list {
