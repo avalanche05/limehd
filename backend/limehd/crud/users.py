@@ -1,9 +1,10 @@
+from fastapi import Depends
 from sqlalchemy.orm import Session
-from backend.limehd.models import User
-from backend.limehd.utils import generate_fingerprint
+from limehd.models import User
+from limehd.utils import generate_fingerprint
 
 
-def create_user_without_fingerprint(db: Session):
+def create_user_without_fingerprint(db: Session) -> User:
     fingerprint = generate_fingerprint()
     user = User(
         email=None,
@@ -15,10 +16,13 @@ def create_user_without_fingerprint(db: Session):
     return user
 
 
-async def get_by_user_id(db: Session, fingerprint: str):
-    user = await db.query(User).filter(User.fingerprint == fingerprint).first()
+def get_by_user_id(db: Session, fingerprint: str) -> User:
+    user = db.query(User).filter(User.fingerprint == fingerprint).first()
+    return user
+
+
+def check_cookie(db: Session, cookie: str) -> User | None:
+    user = db.query(User).filter(User.fingerprint == cookie).first()
     if user:
-        return fingerprint
-    else:
-        new_user = create_user_without_fingerprint(db)
-        return new_user.fingerprint
+        return user.fingerprint
+    return None
