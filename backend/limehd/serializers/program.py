@@ -2,7 +2,6 @@ from sqlalchemy.orm import Session
 
 from limehd.models import program as db_model_program
 from limehd import schemas, serializers, models
-from .stream import get_streams
 
 
 def get_program(db_program: db_model_program.Program, is_empty_streams: bool = False) -> schemas.Program:
