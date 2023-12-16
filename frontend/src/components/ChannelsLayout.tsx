@@ -3,24 +3,20 @@ import ChannelCard from "./ChannelCard";
 
 const ChannelsLayout = observer(() => {
   return (
-    <section className="channels">
-      <div className="container channels-container">
-        <div className="row">
-          <div className="card-place">
-            <ChannelCard />
-          </div>
-          <div className="card-place">
-            <ChannelCard />
-          </div>
-          <div className="card-place">
-            <ChannelCard />
-          </div>
-          <div className="card-place">
-            <ChannelCard />
-          </div>
-        </div>
+    <div className="row">
+      <div className="card-place">
+        <ChannelCard />
       </div>
-    </section>
+      <div className="card-place">
+        <ChannelCard />
+      </div>
+      <div className="card-place">
+        <ChannelCard />
+      </div>
+      <div className="card-place">
+        <ChannelCard />
+      </div>
+    </div>
   );
 });
 

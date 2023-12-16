@@ -1,14 +1,16 @@
-import { observer } from 'mobx-react-lite';
-import Header from '../components/Header';
-import SideChannels from '../components/sideChannels';
-import ChannelsLayout from '../components/ChannelsLayout';
+import { observer } from "mobx-react-lite";
+import ChannelsLayout from "../components/ChannelsLayout";
 
 const Channels = observer(() => {
-    return (
-        <>
-            <ChannelsLayout />
-        </>
-    );
+  return (
+    <>
+      <section className="channels">
+        <div className="container channels-container">
+          <ChannelsLayout />
+        </div>
+      </section>
+    </>
+  );
 });
 
 export default Channels;
