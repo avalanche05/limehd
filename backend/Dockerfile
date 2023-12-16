@@ -9,8 +9,7 @@ RUN python -m pip install poetry
 
 # Install project dependencies
 RUN poetry install --no-interaction --no-ansi
-RUN pip install uvicorn
-RUN pip install fastapi
+RUN pip install -r requirements.txt
 
 EXPOSE 8000
 

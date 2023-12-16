@@ -1,0 +1,65 @@
+/channel get
+
+params, start, finish
+name
+{
+"id": int,
+"name": str,
+"rating": float,
+"description": str,
+"image": str,
+"is_favorite": bool,
+"stream_link": str,
+"schedule": list[Stream]
+}
+
+/program get
+name
+genre
+category
+{
+"id": int,
+"name": str,
+"start": dt,
+"finish": dt,
+"rating": float,
+"genre": str,
+"category": str,
+"image": str,
+"streams": list[Stream] (program with no streams) (sort by start)
+}
+
+// не  нужен
+get /stream/<id>
+{
+"chanel": Channel,
+"start": dt,
+"end": dt,
+"program": Program
+}
+
+get channel/<id>
+get program/<id>
+
+post channel/<id>/rating
+post program/<id>/rating
+
+
+/genre get (list[str])
+/category get (list[str])
+
+post /channel/<id>/like
+post /program/<id>/like
+
+get /user
+{
+"id": int,
+"name": str,
+"favorite_programs": [Program],
+"favorite_channels": [Channel],
+}
+
+get user/subscriptions
+start
+finish
+list[Stream]
