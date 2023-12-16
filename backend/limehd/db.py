@@ -5,9 +5,9 @@ from sqlalchemy.engine import create_engine
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import sessionmaker, Mapped, mapped_column
 
-from .config import config
+from .config import get_settings
 
-db_url = f"postgresql://{config.POSTGRES_USER}:{config.POSTGRES_PASSWORD}@{config.POSTGRES_SERVER}/{config.POSTGRES_DB}"
+db_url = f"postgresql://postgres:limehd@chat.nlogn.info:9999/postgres"
 logging.debug(f"db_url: {db_url}")
 engine = create_engine(db_url)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -18,3 +18,6 @@ class BaseSqlModel(DeclarativeBase):
     updated_at: Mapped[datetime] = mapped_column(
         DateTime, default=datetime.utcnow, onupdate=datetime.utcnow
     )
+
+
+BaseSqlModel.metadata.create_all(engine)
