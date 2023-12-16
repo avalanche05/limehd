@@ -311,6 +311,11 @@ header {
     }
 }
 
+.category-title {
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.80);
+}
+
 .search-response {
     .search__container {
         padding-top: 20px;
@@ -320,11 +325,6 @@ header {
         font-family: 'Montserrat', sans-serif;
         font-weight: 500;
         font-size: 1.4em;
-    }
-
-    .category-title {
-        margin-bottom: 10px;
-        color: rgba(255, 255, 255, 0.80);
     }
 
     .category-title-programms {
@@ -375,5 +375,29 @@ header {
         .desc {
             color:rgba(255, 255, 255, 0.76);
         }
+    }
+}
+
+.profile {
+    .privat-info {
+        margin-top: 20px;
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.05em;
+        }
+    }
+
+    .title {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        font-size: 1.4em;
+        margin-top: 50px;
     }
 }
