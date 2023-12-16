@@ -20,8 +20,6 @@ category
 {
 "id": int,
 "name": str,
-"start": dt,
-"finish": dt,
 "rating": float,
 "genre": str,
 "category": str,
