@@ -10,6 +10,7 @@ import Home from "../pages/Home";
 import Channels from "../pages/Channels";
 import Search from "../pages/Search";
 import Channel from "../pages/Channel";
+import Programm from "../pages/Programm";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/channel",
         element: <Channel />,
+      },
+      {
+        path: "/dashboard/programm",
+        element: <Programm />,
       },
     ],
   },

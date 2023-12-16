@@ -36,20 +36,26 @@ const Header = observer(() => {
             </ul>
           </nav>
           <div className="search">
-            <form className="search__box">
+            <form
+              className="search__box"
+              onFocus={(e) => e.currentTarget.classList.add("focus")}
+              onBlur={(e) => e.currentTarget.classList.remove("focus")}
+            >
               <input
                 className="search__box__input"
                 type="text"
                 placeholder="Найти канал или передачу"
               />
-              <button className="search__box__icon" type="submit">
-                <SearchOutlined className="search__box__icon_image" />
+              <button className="search__box__submit" type="submit">
+                <div className="search__box__icon">
+                  <SearchOutlined className="search__box__icon_image" />
+                </div>
               </button>
             </form>
           </div>
           <div className="logout header__logout">
-            <Link onClick={logout} to="/login" style={{ color: "#fff" }}>
-              <LogoutOutlined style={{ color: "#fff" }} />
+            <Link onClick={logout} to="/login">
+              <LogoutOutlined className="logout-icon" style={{}} />
             </Link>
           </div>
         </div>
