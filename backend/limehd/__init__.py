@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from . import db, routers, config
-from limehd.routers import user_router, channel_router, program_router
+from limehd.routers import user_router, program_router, channel_router
 
 
 @asynccontextmanager
