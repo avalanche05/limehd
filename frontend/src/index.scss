@@ -519,7 +519,7 @@ header {
         background-color: #40354e;
         gap: 1px;
 
-        .programm {
+        .tvshow {
             width: 100%;
             background-color: #121212;
             display: flex;
@@ -537,5 +537,49 @@ header {
                 font-size: 1.5em;
             }
         }
+    }
+}
+
+.programm {
+    padding: 30px;
+
+    .preview {
+        height: 300px;
+    }
+
+    .title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2em;
+        margin-top: 20px;
+    }
+
+    .category {
+        color:rgba(255, 255, 255, 0.76);
+    }
+
+    .genre {
+        color:rgba(255, 255, 255, 0.76);
+        margin-left: 15px;
+    }
+
+    .rate {
+        margin: 20px 0;
+        display: flex;
+
+        .rate-score {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .rate-icon {
+            font-size: 20px;
+        }
+    }
+
+    .desc {
+        max-width: 600px;
+        font-size: 1.1em;
+        color:rgba(255, 255, 255, 0.76);
     }
 }
