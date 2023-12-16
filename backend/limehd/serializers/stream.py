@@ -14,3 +14,7 @@ def get_stream(db_stream: db_model_stream.Stream) -> schemas.Stream:
     )
 
     return stream
+
+
+def get_streams(db_streams: list[db_model_stream.Stream]) -> list[schemas.Stream]:
+    return [get_stream(db_streams) for db_stream in db_streams]

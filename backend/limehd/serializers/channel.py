@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 
 from limehd.models import channel as db_model_channel
 from limehd import schemas, serializers
-from .stream import get_stream
+from .stream import get_streams
 
 
 def get_channel(db_channel: db_model_channel.Channel, user_id: int) -> schemas.Channel:
@@ -14,7 +14,7 @@ def get_channel(db_channel: db_model_channel.Channel, user_id: int) -> schemas.C
         image=db_channel.image,
         is_favorite=any(s.id == user_id for s in db_channel.subscribers),
         stream_link=db_channel.stream_link,
-        schedule=db_channel.streams
+        schedule=get_streams(db_channel.streams)
     )
 
     return channel

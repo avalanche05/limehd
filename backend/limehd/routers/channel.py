@@ -26,11 +26,15 @@ def get_channels(
 
 @channel_router.get(path="/{channel_id}")
 def get_channel_by_channel_id(
+        response: Response,
         channel_id: int,
+        user: models.User = Depends(current_user),
         db: Session = Depends(get_db),
 ) -> schemas.Channel:
+    cookie = user.fingerprint
+    response.set_cookie(key='fingerprint', value=cookie)
     channel = crud.get_channel_by_channel_id(db, id=channel_id)
-    return serializers.get_channel(channel)
+    return serializers.get_channel(channel, user.id)
 
 
 @channel_router.post(path="/{channel_id}/rating")
