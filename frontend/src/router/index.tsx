@@ -9,6 +9,7 @@ import DashboardLayout from "../components/DashboardLayout";
 import Home from "../pages/Home";
 import Channels from "../pages/Channels";
 import Search from "../pages/Search";
+import Channel from "../pages/Channel";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/search",
         element: <Search />,
+      },
+      {
+        path: "/dashboard/channel",
+        element: <Channel />,
       },
     ],
   },

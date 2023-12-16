@@ -30,7 +30,7 @@ body {
 .container {
     padding: 0 40px;
     max-width: 1400px;
-    width: calc(100% - 80px);
+    width: 100%;
 }
 
 header {
@@ -222,14 +222,22 @@ header {
     display: flex;
     align-items: center;
     width: calc(100% - 20px);
-    height: 2.7rem;
     padding: 5px 10px;
     color: #fff;
     text-decoration: none;
 
     .logo {
-        height: 100%;
+        height: 35px;
+        width: 35px;
         border-radius: 50%;
+        overflow: hidden;
+        background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/1%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB-5.svg/800px-1%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB-5.svg.png');
+        background-position: 50% 50%;
+        background-size: cover;
+    }
+
+    .logo {
+        height: 100%;
     }
 
     .info {
@@ -399,5 +407,50 @@ header {
         font-weight: 500;
         font-size: 1.4em;
         margin-top: 50px;
+    }
+}
+
+
+.channel {
+    .channel-container {
+        padding-top: 30px;
+    }
+
+    .channel-data {
+        display: flex;
+    }
+
+    .channel-logo {
+        height: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+        width: fit-content;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .channel-info {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 30px;
+        font-size: 1.1em;
+
+        .name {
+            font-family: "Montserrat", sans-serif;
+            font-size: 2em;
+        }
+
+        .desc {
+            margin-top: 10px;
+            margin-left: 2px;
+            color:rgba(255, 255, 255, 0.76);
+        }
+
+        .rate {
+            margin-top: 10px;
+            margin-left: 2px;
+        }
     }
 }
