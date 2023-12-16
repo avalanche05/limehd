@@ -5,6 +5,7 @@ from pydantic import BaseModel
 class Program(BaseModel):
     id: int
     name: str
+    description: str
     start: datetime
     finish: datetime
     rating: float

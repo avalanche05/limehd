@@ -8,6 +8,7 @@ def get_program(db_program: db_model_program.Program) -> schemas.Program:
     program = schemas.Program(
         id=db_program.id,
         name=db_program.name,
+        description=db_program.description,
         start=db_program.start,
         finish=db_program.finish,
         rating=db_program.rating,
