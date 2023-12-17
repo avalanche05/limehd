@@ -24,8 +24,8 @@ const Profile = observer(() => {
                     <Spin spinning={loading}>
                         <div className='privat-info'>
                             <h1>Личная информация</h1>
-                            {rootStore.user?.name ? (
-                                <>Email: {rootStore.user?.name}</>
+                            {rootStore.user?.email ? (
+                                <>Email: {rootStore.user?.email}</>
                             ) : (
                                 <>
                                     <Link to='/signup'>Зарегистрируйтесь</Link> или{' '}
@@ -57,7 +57,10 @@ const Profile = observer(() => {
                             <div className='row'>
                                 {rootStore.user?.favorite_channels.map((channel) => {
                                     return (
-                                        <Link to={`/dashboard/channel/${channel.id}`}>
+                                        <Link
+                                            className='profile-link'
+                                            to={`/dashboard/channel/${channel.id}`}
+                                        >
                                             <div
                                                 style={{
                                                     color: '#ffffff',
