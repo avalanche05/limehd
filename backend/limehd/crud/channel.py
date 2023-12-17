@@ -67,12 +67,12 @@ def add_subscriber_to_channel(db: Session, user_id: int, channel_id: int):
 def update_channel_rating(
         db: Session,
         channel_id: int,
-        mark: int,
+        mark: float,
 ):
     channel = db.query(models.Channel).filter(models.Channel.id == channel_id).first()
 
     if channel:
         channel.votes_count += 1
-        channel.rating = ((float(channel.rating) * (channel.votes_count - 1)) + int(mark)) / channel.votes_count
+        channel.rating = ((float(channel.rating) * (channel.votes_count - 1)) + float(mark)) / channel.votes_count
 
         db.commit()

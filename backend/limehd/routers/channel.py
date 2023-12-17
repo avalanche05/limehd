@@ -52,7 +52,7 @@ def get_channel_by_channel_id(
 @channel_router.post(path="/{channel_id}/rating")
 def add_channel_rating(
         channel_id: int,
-        mark: int,
+        mark: float,
         db: Session = Depends(get_db),
 ) -> dict:
     crud.update_channel_rating(db, channel_id=channel_id, mark=mark)
