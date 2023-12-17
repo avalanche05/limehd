@@ -1,4 +1,3 @@
-from limehd import create_app, config
-
+from limehd import create_app
 
 app = create_app()
