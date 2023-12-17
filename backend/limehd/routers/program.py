@@ -29,10 +29,9 @@ def get_program(response: Response,
     return serializers.get_programs(db_programs, user.id)
 
 
-@program_router.get(path="/{program_id}")
-def get_program_by_program_id(program_id: int, db: Session = Depends(get_db)) -> schemas.Program:
-    program = crud.get_program_by_program_id(db, program_id)
-
+@program_router.get(path="/{id}")
+def get_program_by_program_id(id: int, db: Session = Depends(get_db)) -> schemas.Program:
+    program = crud.get_program_by_program_id(db, id)
     return serializers.get_program(program)
 
 
