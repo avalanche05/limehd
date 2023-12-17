@@ -10,6 +10,10 @@ def get_favorite_streams(db: Session, programs: List[models.Program], start: dat
     streams = []
     for program in programs:
         for program_stream in program.streams:
+            if start is None:
+                start = datetime(2003, 12, 16)
+            if finish is None:
+                finish = datetime(2033, 12, 16)
             if program_stream.start >= start and program_stream.finish <= finish:
                 streams.append(program_stream)
 

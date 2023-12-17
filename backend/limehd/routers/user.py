@@ -64,11 +64,7 @@ def get_user_subscriptions(response: Response,
                            db: Session = Depends(get_db)):
     cookie = user.fingerprint
     response.set_cookie(key="fingerprint", value=cookie, samesite="None")
+    favorite_programs = crud.get_favorite_programs(db, user.id)
+    favorite_streams = crud.get_favorite_streams(db, favorite_programs, start=start, finish=finish)
 
-    favorite_programs = crud.get_favorite_programs(db, user)
-    favorite_streams_ids = crud.get_favorite_streams(db, favorite_programs, start=start, finish=finish)
-    if favorite_streams_ids:
-        favorite_streams = crud.get_streams_by_stream_ids(db, favorite_streams_ids)
-    else:
-        favorite_streams: List[models.Stream] = []
     return serializers.get_streams(favorite_streams)

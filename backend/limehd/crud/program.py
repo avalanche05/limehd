@@ -51,9 +51,9 @@ def add_subscriber_to_program(db: Session, user_id: int, program_id: int):
         db.commit()
 
 
-def get_favorite_programs(db: Session, user: models.User) -> List[models.Program] | None:
-    programs = user.programs
-    return programs
+def get_favorite_programs(db: Session, user_id: int):
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    return user.programs
 
 
 def update_program_rating(db: Session, program: Program, mark: int):
