@@ -56,7 +56,7 @@ const Channel = observer(() => {
                                 defaultValue={channel?.rating}
                                 onChange={(value: number) =>
                                     rootStore
-                                        .postChannelRating(value, channel?.id || 1)
+                                        .postChannelRating(channel?.id || 1, value)
                                         .then(() => {
                                             messageApi.success('Отзыв добавлен');
                                         })
@@ -92,7 +92,7 @@ const Channel = observer(() => {
                                             })
                                             .catch(() => {
                                                 messageApi.error(
-                                                    'Ошибка добавления канала в избранное'
+                                                    'Перед тем как добавить канал в избранное, необходимо авторизоваться'
                                                 );
                                             });
                                     }}

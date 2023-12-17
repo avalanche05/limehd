@@ -15,9 +15,12 @@ export class UserApiService {
     async postChannelRating(id: number, rating: number) {
         await axios.post(
             `${API_URL}/channel/${id}/rating`,
-            { rating },
+            {},
             {
                 headers: authHeader(),
+                params: {
+                    mark: rating,
+                },
             }
         );
     }
@@ -25,9 +28,12 @@ export class UserApiService {
     async postProgramRating(id: number, rating: number) {
         await axios.post(
             `${API_URL}/program/${id}/rating`,
-            { rating },
+            {},
             {
                 headers: authHeader(),
+                params: {
+                    mark: rating,
+                },
             }
         );
     }

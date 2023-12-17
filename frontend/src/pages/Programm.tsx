@@ -47,7 +47,7 @@ const Programm = observer(() => {
                             defaultValue={program?.rating}
                             onChange={(value: number) =>
                                 rootStore
-                                    .postProgramRating(value, program?.id || 1)
+                                    .postProgramRating(program?.id || 1, value)
                                     .then(() => {
                                         messageApi.success('Отзыв добавлен');
                                     })
@@ -81,7 +81,7 @@ const Programm = observer(() => {
                                         })
                                         .catch(() => {
                                             messageApi.error(
-                                                'Ошибка добавления канала в избранное'
+                                                'Перед тем как добавить канал в избранное, необходимо авторизоваться'
                                             );
                                         });
                                 }}
