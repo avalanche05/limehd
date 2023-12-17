@@ -12,7 +12,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
         <ConfigProvider
             theme={{
-                token: {},
+                token: {
+                    colorPrimary: '#7320C1',
+                },
                 algorithm: darkAlgorithm,
             }}
         >
