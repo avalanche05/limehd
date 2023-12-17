@@ -2,6 +2,7 @@ from typing import List, Type
 
 from sqlalchemy import func, and_
 from sqlalchemy.orm import Session
+from limehd import serializers
 from limehd import models, schemas
 from datetime import datetime
 
@@ -47,3 +48,9 @@ def add_subscriber_to_program(db: Session, user_id: int, program_id: int):
     if program and user:
         program.subscribers.append(user)
         db.commit()
+
+
+def get_favorite_programs(db: Session, user: models.User) -> List[models.Program] | None:
+    programs = user.programs
+    print('crud', user.id, programs)
+    return programs

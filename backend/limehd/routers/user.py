@@ -22,7 +22,18 @@ def get_user(response: Response, user: models.User = Depends(current_user),
 
 
 @user_router.get(path="/subscriptions")
-def get_user_subsctiptions(response: Response, user: models.User = Depends(current_user), db: Session = Depends(get_db)):
+def get_user_subsctiptions(response: Response,
+                           user: models.User = Depends(current_user),
+                           db: Session = Depends(get_db)):
     cookie = user.fingerprint
     response.set_cookie(key='fingerprint', value=cookie)
+
+    favorite_programs = crud.get_favorite_programs(db, user)
+    favourite_streams = crud.get_favorite_streams(db, favorite_programs)
+    print('favorite', favorite_programs)
+    print(user.id)
+    for stream in favourite_streams:
+        print(stream)
+    return favourite_streams
+
     
