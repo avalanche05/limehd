@@ -39,6 +39,12 @@ export class RootStore {
         this.setPrograms(programs);
     }
 
+    async fetchProgram(id: number) {
+        const program = await ProgramsApiServiceInstanse.getProgram(id);
+
+        return program;
+    }
+
     todayStart = '2023-12-17T00:00:00.668Z';
     todayFinish = '2023-12-17T23:59:59.668Z';
     async fetchChannels(
@@ -52,6 +58,12 @@ export class RootStore {
         // this.setChannels(channels);
 
         return channels;
+    }
+
+    async fetchChannel(id: number) {
+        const channel = await ProgramsApiServiceInstanse.getChannel(id);
+
+        return channel;
     }
 
     async fetchUser() {

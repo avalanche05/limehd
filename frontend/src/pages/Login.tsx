@@ -32,7 +32,7 @@ const Login = () => {
     const onTestUserLogin = () => {
         setTestLoading(true);
 
-        AuthService.login({ email: '1', password: '1' })
+        AuthService.login({ login: '1', password: '1' })
             .then(() => {
                 messageApi.success('Вы успешно авторизовались');
 
@@ -61,7 +61,7 @@ const Login = () => {
 
                     <Form style={{ marginTop: 50 }} name='login' onFinish={onFinish}>
                         <Form.Item
-                            name='email'
+                            name='login'
                             rules={[
                                 {
                                     required: true,

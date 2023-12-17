@@ -412,6 +412,7 @@ header {
         margin-bottom: 15px;
 
         .channel-logo {
+            flex-shrink: 0;
             height: 100%;
             border-radius: 8px;
         }
@@ -556,6 +557,7 @@ header {
     }
 
     .channel-logo {
+        flex-shrink: 0;
         height: 200px;
         border-radius: 10px;
         overflow: hidden;
