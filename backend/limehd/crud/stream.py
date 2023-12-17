@@ -1,14 +1,17 @@
+from datetime import datetime
 from typing import List, Type
 
 from sqlalchemy.orm import Session
 from limehd import models, schemas
 
 
-def get_favorite_streams(db: Session, programs: List[models.Program]) -> list[int] | None:
+def get_favorite_streams(db: Session, programs: List[models.Program], start: datetime,
+                         finish: datetime) -> list[int] | None:
     streams = []
     for program in programs:
         for program_stream in program.streams:
-            streams.append(program_stream)
+            if program_stream.start >= start and program_stream.finish <= finish:
+                streams.append(program_stream)
 
     return streams
 

@@ -1,6 +1,6 @@
 from fastapi import Depends
 from sqlalchemy.orm import Session
-from limehd.models import User
+from limehd.models import User, Program
 from limehd.utils import generate_fingerprint
 
 
@@ -30,4 +30,10 @@ def check_cookie(db: Session, cookie: str) -> User | None:
 
 def get_by_email(db: Session, email: str) -> User | None:
     user = db.query(User).filter(User.email == email).first()
+    return user
+
+
+def add_program(db: Session, user: User, program: Program) -> User:
+    user.programs.append(program)
+    db.commit()
     return user
