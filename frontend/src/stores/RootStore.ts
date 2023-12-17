@@ -39,15 +39,17 @@ export class RootStore {
         this.setPrograms(programs);
     }
 
+    todayStart = '2023-12-17T00:00:00.668Z';
+    todayFinish = '2023-12-17T23:59:59.668Z';
     async fetchChannels(
         params: IChannelsParams = {
-            start: new Date(this.date.getDate() - 7).toISOString(),
-            finish: new Date(this.date.getDate() + 7).toISOString(),
+            start: this.todayStart,
+            finish: this.todayFinish,
         }
     ) {
         const channels = await ProgramsApiServiceInstanse.getChannels(params);
 
-        this.setChannels(channels);
+        // this.setChannels(channels);
 
         return channels;
     }
