@@ -9,7 +9,9 @@ const Profile = observer(() => {
         <div className="container prfile__container">
           <div className="privat-info">
             <h1>Личная информация</h1>
-            <p>Email: IvanIliin@misos.com</p>
+            <p>
+              Email: <span className="email">IvanIliin@misos.com</span>
+            </p>
           </div>
           <div className="favourites-tvshow">
             <div className="title category-title">Избранные программы</div>
