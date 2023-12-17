@@ -23,6 +23,6 @@ def read_token(db: Session, value: str) -> Token:
     token = db.query(Token).filter(Token.value == value).first()
 
     if token is None:
-        raise errors.AuthenticationError()
+        raise Exception("Not authentithicated")
 
     return token
