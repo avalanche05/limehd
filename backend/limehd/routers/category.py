@@ -15,7 +15,7 @@ def get_categories(response: Response,
                    user: models.User = Depends(current_user),
                    db: Session = Depends(get_db)) -> list[str]:
     cookie = user.fingerprint
-    response.set_cookie(key='fingerprint', value=cookie)
+    response.set_cookie(key="fingerprint", value=cookie, samesite="None", secure=True)
 
     genres = crud.get_categories(db)
     return genres

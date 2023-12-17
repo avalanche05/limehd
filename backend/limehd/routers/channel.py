@@ -21,7 +21,7 @@ def get_channels(
         db: Session = Depends(get_db),
 ) -> list[schemas.Channel]:
     cookie = user.fingerprint
-    response.set_cookie(key='fingerprint', value=cookie)
+    response.set_cookie(key="fingerprint", value=cookie, samesite="None", secure=True)
 
     channels = crud.get_channels(db, search_name=search_name, start=start, finish=finish)
     return serializers.get_channels(channels, user.id)
@@ -35,7 +35,7 @@ def get_channel_by_channel_id(
         db: Session = Depends(get_db),
 ) -> schemas.Channel:
     cookie = user.fingerprint
-    response.set_cookie(key="example_cookie", value="example_value", samesite=None, secure=True)
+    response.set_cookie(key="fingerprint", value=cookie, samesite="None", secure=True)
     channel = crud.get_channel_by_channel_id(db, id=channel_id)
     return serializers.get_channel(channel, user.id)
 
@@ -57,6 +57,6 @@ def like_channel(response: Response,
                  db: Session = Depends(get_db),
                  ) -> dict:
     cookie = user.fingerprint
-    response.set_cookie(key="fingerprint", value=cookie, samesite=None, secure=True)
+    response.set_cookie(key="fingerprint", value=cookie, samesite="None", secure=True)
     crud.add_subscriber_to_channel(db, user_id=user.id, channel_id=channel_id)
     return {"message": f"User with ID {user.id} subscribed to channel with ID {id}"}
