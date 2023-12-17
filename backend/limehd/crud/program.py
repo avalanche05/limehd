@@ -53,6 +53,5 @@ def add_subscriber_to_program(db: Session, user_id: int, program_id: int):
 def update_program_rating(db: Session, program: Program, mark: int):
     program.votes_count += 1
     program.rating = ((float(program.rating) * (program.votes_count - 1)) + int(mark)) / program.votes_count
-
     db.commit()
     return program

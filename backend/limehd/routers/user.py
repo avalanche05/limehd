@@ -51,7 +51,6 @@ def register(login_schema: LoginSchema, user: models.User = Depends(current_user
 @user_router.post("/login")
 def login(login_schema: LoginSchema, user: models.User = Depends(current_user), db: Session = Depends(get_db)):
     user_by_email = get_by_email(db, login_schema.login)
-    print(user_by_email)
     if user_by_email and user_by_email.check_password(login_schema.password):
         user_by_email.fingerprint = user.fingerprint
         db.commit()
