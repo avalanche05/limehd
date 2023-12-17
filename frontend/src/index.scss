@@ -6,7 +6,7 @@
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -14,7 +14,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #1a182f;
+    background: rgba(255,255,255,0.15);
     border-radius: 5px;
 }
 
@@ -50,6 +50,7 @@ header {
     position: fixed;
     width: 100%;
     background-color: #121212;
+    z-index: 1000;
 }
 
 .header__container {
@@ -424,14 +425,19 @@ header {
     .schedule {
         display: flex;
         flex-direction: column;
-        gap: 10px;
 
         .schedule-item {
             display: flex;
+            transition : .3s;
+            padding: 7px 5px;
 
             .time {
                 min-width: 85px;
             }
+        }
+
+        .schedule-item:hover {
+            background-color: rgba(255,255,255,0.1);
         }
     }
 }
@@ -520,6 +526,15 @@ header {
         .email {
             color: #daed6d;
         }
+
+        a {
+            color: #daed6d;
+        }
+        
+        a:hover {
+            color: #aebd57;
+        }
+        
     }
 
     .title {
