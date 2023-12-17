@@ -19,3 +19,7 @@ def get_program(db_program: db_model_program.Program, is_empty_streams: bool = F
     )
 
     return program
+
+
+def get_programs(db_programs: list[db_model_program.Program], user_id: int) -> list[schemas.Program]:
+    return [get_program(db_program) for db_program in db_programs]
