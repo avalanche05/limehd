@@ -3,7 +3,7 @@ from requests import Session
 
 from limehd import schemas, crud, serializers, models
 from limehd.dependencies import get_db
-from limehd.auth import current_user
+from limehd.dependencies import current_user
 from limehd.schemas import LoginSchema
 from limehd.crud import get_by_email
 from limehd.models import User
