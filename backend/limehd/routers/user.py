@@ -21,14 +21,14 @@ def get_user(response: Response, user: models.User = Depends(current_user),
              db: Session = Depends(get_db)
              ) -> schemas.User:
     cookie = user.fingerprint
-    response.set_cookie(key='fingerprint', value=cookie)
+    response.set_cookie(key="example_cookie", value="example_value", samesite=None, secure=True)
     return serializers.get_user(user)
 
 
 @user_router.get(path="/subscriptions")
 def get_user_subsctiptions(response: Response, user: models.User = Depends(current_user), db: Session = Depends(get_db)):
     cookie = user.fingerprint
-    response.set_cookie(key='fingerprint', value=cookie)
+    response.set_cookie(key="example_cookie", value="example_value", samesite=None, secure=True)
 
 
 @user_router.post('/register')
