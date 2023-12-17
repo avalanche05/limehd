@@ -33,7 +33,7 @@ def get_channels(
         channels = sorted(channels, key=lambda x: comparator(x.name, search_name))
         channels = [channel for channel in channels if
                     distance(channel.name.lower().strip(), search_name.lower().strip()) <= 3]
-        if distance(channels[0].name.lower().strip(), search_name.lower().strip()) == 0:
+        if channels and distance(channels[0].name.lower().strip(), search_name.lower().strip()) == 0:
             channels = channels[:1]
 
     if start and finish:

@@ -43,7 +43,8 @@ def get_programs(
         programs = [program for program in programs if
                     distance(program.name.lower().strip(),
                              search_name.lower().strip()) <= 15 and search_name.lower().strip() in program.name.lower().strip()]
-        if distance(programs[0].name.lower().strip(), search_name.lower().strip()) == 0:
+
+        if programs and distance(programs[0].name.lower().strip(), search_name.lower().strip()) == 0:
             programs = programs[:1]
 
     programs = programs[:min(100, len(programs))]

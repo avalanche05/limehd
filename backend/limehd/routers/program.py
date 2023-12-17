@@ -52,7 +52,7 @@ def get_program_by_program_id(request: Request, id: int, db: Session = Depends(g
     return serializers.get_program(program, user_id)
 
 
-@program_router.post(path="/{id}/rating")
+@program_router.post(path="/{program_id}/rating")
 def add_program_rating(
         program_id: int,
         mark: float,
