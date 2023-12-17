@@ -61,6 +61,7 @@ def add_subscriber_to_channel(db: Session, user_id: int, channel_id: int):
 
     if channel and user:
         channel.subscribers.append(user)
+        db.add(channel)
         db.commit()
 
 

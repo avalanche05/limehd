@@ -12,11 +12,21 @@ program_router = APIRouter(
 
 
 @program_router.get(path="")
-def get_program(name: str | None, genre: str | None, category: str | None,
+def get_program(response: Response, user: models.User = Depends(current_user),
+                name: str | None = None,
+                genre: str | None = None,
+                category: str | None = None,
+                start: datetime | None = None,
+                finish: datetime | None = None,
+                search_name: str | None = None,
                 db: Session = Depends(get_db)) -> schemas.Channel:
-    program = crud.get_program()
+    db_programs = crud.get_programs(db, start_date=start,
+                                    finish_date=finish,
+                                    genre=genre,
+                                    category=category,
+                                    search_name=search_name)
 
-    return serializers.get_program(program)
+    return serializers.get_program(sprogram)
 
 
 @program_router.get(path="/{id}")
