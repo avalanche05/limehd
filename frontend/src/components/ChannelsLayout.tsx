@@ -123,15 +123,17 @@ const ChannelsLayout = observer(() => {
                     options={['Вчера', 'Сегодня', 'Завтра', 'Послезавтра']}
                 />
 
-                <div className='row' style={{ marginTop: 20 }}>
-                    {Array(16)
-                        .fill(null)
-                        .map((_, index) => (
-                            <div key={index} className='card-place'>
-                                <Skeleton loading={isLoading}></Skeleton>
-                            </div>
-                        ))}
-                </div>
+                {isLoading ? (
+                    <div className='row' style={{ marginTop: 20 }}>
+                        {Array(16)
+                            .fill(null)
+                            .map((_, index) => (
+                                <div key={index} className='card-place'>
+                                    <Skeleton loading={isLoading}></Skeleton>
+                                </div>
+                            ))}
+                    </div>
+                ) : null}
 
                 {!isLoading ? (
                     <div style={{ marginTop: 20 }} className='container channels-container'>
