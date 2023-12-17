@@ -1,4 +1,4 @@
 export interface CreateUserBody {
-    email: string;
+    login: string;
     password: string;
 }
