@@ -5,7 +5,6 @@ from .db import SessionLocal
 from limehd.crud import read_user_by_token
 from limehd.models import User
 
-
 oauth2_scheme = HTTPBearer()
 
 
