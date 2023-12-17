@@ -53,7 +53,6 @@ def add_subscriber_to_program(db: Session, user_id: int, program_id: int):
 
 def get_favorite_programs(db: Session, user: models.User) -> List[models.Program] | None:
     programs = user.programs
-    print('crud', user.id, programs)
     return programs
 
 
