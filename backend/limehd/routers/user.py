@@ -1,5 +1,7 @@
 from fastapi import APIRouter, Body, Depends, HTTPException, Response, HTTPException, status
 from requests import Session
+from datetime import datetime
+from typing import List
 
 from limehd import schemas, crud, serializers, models
 from limehd.dependencies import get_db
@@ -57,16 +59,17 @@ def login(login_schema: LoginSchema, user: models.User = Depends(current_user), 
 
 @user_router.get(path="/subscriptions")
 def get_user_subscriptions(response: Response,
+                           start: datetime = None,
+                           finish: datetime = None,
                            user: models.User = Depends(current_user),
                            db: Session = Depends(get_db)):
     cookie = user.fingerprint
     response.set_cookie(key='fingerprint', value=cookie)
 
     favorite_programs = crud.get_favorite_programs(db, user)
-    favorite_streams_ids = crud.get_favorite_streams(db, favorite_programs)
-    print('favorite', favorite_programs)
-    print(user.id)
-    for stream_id in favorite_streams_ids:
-        print(stream_id)
-    favorite_streams = crud.get_streams_by_stream_ids(db, favorite_streams_ids)
+    favorite_streams_ids = crud.get_favorite_streams(db, favorite_programs, start=start, finish=finish)
+    if favorite_streams_ids:
+        favorite_streams = crud.get_streams_by_stream_ids(db, favorite_streams_ids)
+    else:
+        favorite_streams: List[models.Stream] = []
     return serializers.get_streams(favorite_streams)
