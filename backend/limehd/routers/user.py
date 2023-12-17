@@ -63,7 +63,7 @@ def get_user_subscriptions(response: Response,
                            user: models.User = Depends(current_user),
                            db: Session = Depends(get_db)):
     cookie = user.fingerprint
-    response.set_cookie(key="fingerprint", value=cookie, samesite="None", secure=True)
+    response.set_cookie(key="fingerprint", value=cookie, samesite="None")
 
     favorite_programs = crud.get_favorite_programs(db, user)
     favorite_streams_ids = crud.get_favorite_streams(db, favorite_programs, start=start, finish=finish)
