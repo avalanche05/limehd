@@ -36,8 +36,16 @@ def get_programs(
     if category:
         query = query.filter(models.Program.category == category)
 
-    programs = query.limit(100).all()
+    programs = query.limit.all()
 
+    if search_name:
+        programs = sorted(programs, key=lambda x: comparator(x.name, search_name))
+        programs = [program for program in programs if
+                    distance(program.name.lower().strip(), search_name.lower().strip()) <= 3]
+        if distance(programs[0].name.lower().strip(), search_name.lower().strip()) == 0:
+            programs = programs[:1]
+
+    programs = programs[:min(100, len(programs))]
     if start and finish:
         desired_timezone = pytz.timezone('Europe/Moscow')
         moscow_datetime = start.astimezone(desired_timezone)
@@ -53,14 +61,7 @@ def get_programs(
                     streams.append(stream)
             program.streams = streams
 
-    if search_name:
-        programs = sorted(programs, key=lambda x: comparator(x.name, search_name))
-        programs = [program for program in programs if
-                    distance(program.name.lower().strip(), search_name.lower().strip()) <= 3]
-        if distance(programs[0].name.lower().strip(), search_name.lower().strip()) == 0:
-            programs = programs[:1]
-    else:
-        programs = sorted(programs, key=lambda x: -x.rating)
+    programs = sorted(programs, key=lambda x: -x.rating)
 
     return programs
 
