@@ -21,8 +21,9 @@ def get_user(response: Response, user: models.User = Depends(current_user),
              db: Session = Depends(get_db)
              ) -> schemas.User:
     cookie = user.fingerprint
-    response.set_cookie(key='fingerprint', value=cookie)
+    response.set_cookie(key="example_cookie", value="example_value", samesite=None, secure=True)
     return serializers.get_user(user)
+
 
 @user_router.post('/register')
 def register(login_schema: LoginSchema, user: models.User = Depends(current_user), db: Session = Depends(get_db)):
