@@ -57,19 +57,31 @@ const Profile = observer(() => {
                             <div className='row'>
                                 {rootStore.user?.favorite_channels.map((channel) => {
                                     return (
-                                        <div key={channel.id} className='card-place'>
-                                            <div className='channel-simplify-card'>
-                                                <div className='channel-image'>
-                                                    <img src={channel.image} alt='Channel logo' />
-                                                </div>
-                                                <div className='channel-info'>
-                                                    <span className='name'>{channel.name}</span>
-                                                    <p className='desc'>
-                                                        {channel.description.slice(100, 0)}
-                                                    </p>
+                                        <Link to={`/dashboard/channel/${channel.id}`}>
+                                            <div
+                                                style={{
+                                                    color: '#ffffff',
+                                                    textDecoration: 'none',
+                                                }}
+                                                key={channel.id}
+                                                className='card-place'
+                                            >
+                                                <div className='channel-simplify-card'>
+                                                    <div className='channel-image'>
+                                                        <img
+                                                            src={channel.image}
+                                                            alt='Channel logo'
+                                                        />
+                                                    </div>
+                                                    <div className='channel-info'>
+                                                        <span className='name'>{channel.name}</span>
+                                                        <p className='desc'>
+                                                            {channel.description.slice(100, 0)}
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </Link>
                                     );
                                 })}
                             </div>

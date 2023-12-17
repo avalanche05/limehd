@@ -14,7 +14,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.15);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 5px;
 }
 
@@ -412,6 +412,7 @@ header {
         margin-bottom: 15px;
 
         .channel-logo {
+            flex-shrink: 0;
             height: 100%;
             border-radius: 8px;
         }
@@ -428,7 +429,7 @@ header {
 
         .schedule-item {
             display: flex;
-            transition : .3s;
+            transition: 0.3s;
             padding: 7px 5px;
 
             .time {
@@ -437,7 +438,7 @@ header {
         }
 
         .schedule-item:hover {
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255, 255, 255, 0.1);
         }
     }
 }
@@ -530,11 +531,10 @@ header {
         a {
             color: #daed6d;
         }
-        
+
         a:hover {
             color: #aebd57;
         }
-        
     }
 
     .title {
@@ -556,6 +556,7 @@ header {
     }
 
     .channel-logo {
+        flex-shrink: 0;
         height: 200px;
         border-radius: 10px;
         overflow: hidden;
@@ -702,5 +703,11 @@ header {
                 overflow: hidden;
             }
         }
+    }
+}
+
+.main-rec {
+    .programm-card {
+        min-height: 600px;
     }
 }

@@ -9,6 +9,7 @@ export class RootStore {
     filteredPrograms: IProgram[] = [];
     filteredChanneles: IChannel[] = [];
     user: IUser | null = null;
+    search: string = '';
 
     date = new Date();
 
@@ -28,6 +29,18 @@ export class RootStore {
         this.user = user;
     }
 
+    setSearch(search: string) {
+        this.search = search;
+    }
+
+    setFilteredPrograms(programs: IProgram[]) {
+        this.filteredPrograms = programs;
+    }
+
+    setFilteredChannels(channels: IChannel[]) {
+        this.filteredChanneles = channels;
+    }
+
     async fetchPrograms(
         params: IProgramsParams = {
             start: new Date(this.date.getDate() - 7).toISOString(),
@@ -37,6 +50,15 @@ export class RootStore {
         const programs = await ProgramsApiServiceInstanse.getPrograms(params);
 
         this.setPrograms(programs);
+        this.setFilteredPrograms(programs);
+
+        return programs;
+    }
+
+    async fetchProgram(id: number) {
+        const program = await ProgramsApiServiceInstanse.getProgram(id);
+
+        return program;
     }
 
     todayStart = '2023-12-17T00:00:00.668Z';
@@ -50,8 +72,15 @@ export class RootStore {
         const channels = await ProgramsApiServiceInstanse.getChannels(params);
 
         // this.setChannels(channels);
+        this.setFilteredChannels(channels);
 
         return channels;
+    }
+
+    async fetchChannel(id: number) {
+        const channel = await ProgramsApiServiceInstanse.getChannel(id);
+
+        return channel;
     }
 
     async fetchUser() {
