@@ -32,13 +32,13 @@ export interface IProgram {
 export interface IChannelsParams {
     start: string;
     finish: string;
-    name?: string;
+    search_name?: string;
 }
 
 export interface IProgramsParams {
     start: string;
     finish: string;
-    name?: string;
+    search_name?: string;
     genre?: string;
     category?: string;
 }

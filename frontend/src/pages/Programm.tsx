@@ -32,7 +32,7 @@ const Programm = observer(() => {
             <Spin spinning={loading}>
                 <section className='programm'>
                     <img className='preview' src={program?.image} alt='' />
-                    <h1 className='title'>Маша и Медведь</h1>
+                    <h1 className='title'>{program?.name}</h1>
                     <div
                         className='d-flex'
                         style={{
