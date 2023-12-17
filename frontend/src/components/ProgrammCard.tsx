@@ -72,8 +72,13 @@ const ProgrammCard = observer(({ program }: Props) => {
                 />
               </div>
             </div>
+            <div className="info__classify">
+              <span className="info__kategory">{program.category}</span>
+              <span className="info__genre">{program.genre}</span>
+            </div>
             <p className="info__rate">
               <Rate
+                style={{ color: "#DAED6D" }}
                 allowHalf
                 defaultValue={program.rating}
                 onChange={(value: number) =>
@@ -88,10 +93,6 @@ const ProgrammCard = observer(({ program }: Props) => {
                 }
               />
             </p>
-            <div className="info__classify">
-              <span className="info__kategory">{program.category}</span>
-              <span className="info__genre">{program.genre}</span>
-            </div>
             {program.streams.length > 0 ? (
               <div style={{ marginTop: 7 }}>
                 <span className="info__genre">

@@ -22,6 +22,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             itemSelectedBg: "#DAED6D",
             itemSelectedColor: "#000",
           },
+          Progress: {
+            defaultColor: "#DAED6D",
+          },
         },
         algorithm: darkAlgorithm,
       }}
