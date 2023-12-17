@@ -44,7 +44,6 @@ def get_channels(
         desired_timezone = pytz.timezone('Europe/Moscow')
         moscow_datetime = finish.astimezone(desired_timezone)
         finish = moscow_datetime.replace(tzinfo=None)
-
         for channel in channels:
             streams = []
             for stream in channel.streams:

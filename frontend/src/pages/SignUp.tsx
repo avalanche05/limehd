@@ -56,7 +56,7 @@ const SignUp = () => {
                             <Input
                                 size='large'
                                 prefix={<UserOutlined className='site-form-item-icon' />}
-                                placeholder='Номер телефона'
+                                placeholder='Email'
                             />
                         </Form.Item>
                         <Form.Item

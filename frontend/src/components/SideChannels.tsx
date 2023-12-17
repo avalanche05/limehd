@@ -30,13 +30,19 @@ const SideChannelsItem = observer(({ channel }: Props) => {
 const SideChannels = observer(() => {
     const [isLoading, setIsLoading] = useState(false);
     const { rootStore } = useStores();
+    const [channels, setChannels] = useState<IChannel[]>([]);
 
     useEffect(() => {
         setIsLoading(true);
 
-        rootStore.fetchChannels().finally(() => {
-            setIsLoading(false);
-        });
+        rootStore
+            .fetchChannels()
+            .then((channels): void => {
+                setChannels(channels);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
     }, [rootStore]);
 
     return (
@@ -50,7 +56,7 @@ const SideChannels = observer(() => {
                     </div>
                 ))}
 
-                {rootStore.channels.map((channel) => {
+                {channels.map((channel) => {
                     return <SideChannelsItem key={channel.id} channel={channel} />;
                 })}
             </div>
