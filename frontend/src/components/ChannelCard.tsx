@@ -72,7 +72,7 @@ const ChannelCard = observer(({ channel }: Props) => {
                 shape="circle"
                 onClick={() => {
                   rootStore
-                    .postProgramLike(channel.id)
+                    .postChannelLike(channel.id)
                     .then(() => {
                       if (!isFavorite) {
                         messageApi.success("Канал добавлен в избранные");
@@ -91,11 +91,6 @@ const ChannelCard = observer(({ channel }: Props) => {
             </div>
           </div>
           <div className="schedule">
-            <div className="schedule-item">
-              <div className="tvshow-name">
-                {channel.description.slice(0, 100)}...
-              </div>
-            </div>
             {channel.schedule.map((schedule) => {
               return (
                 <div className="schedule-item">
