@@ -56,7 +56,7 @@ def login(login_schema: LoginSchema, user: models.User = Depends(current_user), 
 
 
 @user_router.get(path="/subscriptions")
-def get_user_subsctiptions(response: Response,
+def get_user_subscriptions(response: Response,
                            user: models.User = Depends(current_user),
                            db: Session = Depends(get_db)):
     cookie = user.fingerprint
