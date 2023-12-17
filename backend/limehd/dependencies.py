@@ -1,8 +1,12 @@
 from sqlalchemy.orm import Session
-from fastapi import Depends, Header
+from fastapi import Depends, HTTPException
+from fastapi.security import HTTPBearer
 from .db import SessionLocal
-from limehd.crud import check_cookie, create_user_without_fingerprint, get_by_user_id
+from limehd.crud import read_user_by_token
 from limehd.models import User
+
+
+oauth2_scheme = HTTPBearer()
 
 
 def get_db():
@@ -10,18 +14,13 @@ def get_db():
         yield db
 
 
-async def current_user(
+def current_user(
         db: Session = Depends(get_db),
-        cookie: str | None = Header(None, convert_underscores=True),
-) -> User:
-    fingerprint = None
-    if cookie and 'fingerprint' in cookie:
-        params = cookie.split()
-        for param in params:
-            if 'fingerprint' in param:
-                fingerprint = param.split('=')[1]
+        access_token: str | None = Depends(oauth2_scheme)) -> User:
+    if not access_token:
+        raise HTTPException(
+            status_code=401,
+            detail="Not authenticated",
+        )
 
-    if not fingerprint or not check_cookie(db, fingerprint):
-        user = create_user_without_fingerprint(db)
-        fingerprint = user.fingerprint
-    return get_by_user_id(db, fingerprint)
+    return read_user_by_token(db, access_token.credentials)

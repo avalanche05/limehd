@@ -21,7 +21,6 @@ def get_program(name: str | None, genre: str | None, category: str | None,
 @program_router.get(path="/{id}")
 def get_program_by_program_id(id: int, db: Session = Depends(get_db)) -> schemas.Program:
     program = crud.get_program_by_program_id(db, id)
-
     return serializers.get_program(program)
 
 

@@ -2,8 +2,7 @@ from fastapi import APIRouter, Body, Depends, HTTPException, Response, HTTPExcep
 from requests import Session
 
 from limehd import schemas, crud, serializers, models
-from limehd.dependencies import get_db
-from limehd.auth import current_user
+from limehd.dependencies import get_db, current_user
 from limehd.schemas import LoginSchema
 from limehd.crud import get_by_email
 from limehd.models import User
@@ -17,7 +16,7 @@ user_router = APIRouter(
 
 
 @user_router.get(path="")
-def get_user(response: Response, user: models.User = Depends(current_user),
+def get_user(response: Response, user: User = Depends(current_user),
              db: Session = Depends(get_db)
              ) -> schemas.User:
     cookie = user.fingerprint
@@ -26,19 +25,19 @@ def get_user(response: Response, user: models.User = Depends(current_user),
 
 
 @user_router.get(path="/subscriptions")
-def get_user_subsctiptions(response: Response, user: models.User = Depends(current_user), db: Session = Depends(get_db)):
+def get_user_subsctiptions(response: Response, user: User = Depends(current_user), db: Session = Depends(get_db)):
     cookie = user.fingerprint
     response.set_cookie(key='fingerprint', value=cookie)
 
 
 @user_router.post('/register')
-def register(login_schema: LoginSchema, user: models.User = Depends(current_user), db: Session = Depends(get_db)):
+def register(login_schema: LoginSchema, user: User = Depends(current_user), db: Session = Depends(get_db)):
     user_by_email = get_by_email(db, login_schema.login)
     if not user_by_email:
         user_by_email = User(
             email=login_schema.login,
-            fingerprint=user.fingerprint
         )
+        user_by_emails.tokens.append()
         user_by_email.set_password(login_schema.password)
         db.add(user_by_email)
         db.commit()
