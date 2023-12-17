@@ -11,4 +11,5 @@ class Program(BaseModel):
     genre: str
     category: str
     image: str
+    is_favorite: bool
     streams: list[Stream] | None

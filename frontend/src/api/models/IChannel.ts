@@ -21,6 +21,7 @@ export interface IProgram {
     id: number;
     name: string;
     rating: number;
+    description: string;
     is_favorite: boolean;
     genre: string;
     category: string;
@@ -31,13 +32,13 @@ export interface IProgram {
 export interface IChannelsParams {
     start: string;
     finish: string;
-    name?: string;
+    search_name?: string;
 }
 
 export interface IProgramsParams {
     start: string;
     finish: string;
-    name?: string;
+    search_name?: string;
     genre?: string;
     category?: string;
 }

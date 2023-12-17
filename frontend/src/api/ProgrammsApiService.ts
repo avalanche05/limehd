@@ -5,7 +5,7 @@ import { IChannel, IChannelsParams, IProgram, IProgramsParams } from './models';
 
 export class ProgramsApiService {
     async getPrograms(params: IProgramsParams): Promise<IProgram[]> {
-        const response = await axios.get<IProgram[]>(`${API_URL}/programs`, {
+        const response = await axios.get<IProgram[]>(`${API_URL}/program`, {
             headers: authHeader(),
             params,
         });
@@ -14,7 +14,7 @@ export class ProgramsApiService {
     }
 
     async getProgram(id: number) {
-        const response = await axios.get<IProgram>(`${API_URL}/programs/${id}`, {
+        const response = await axios.get<IProgram>(`${API_URL}/program/${id}`, {
             headers: authHeader(),
         });
 
@@ -31,7 +31,7 @@ export class ProgramsApiService {
     }
 
     async getChannel(id: number) {
-        const response = await axios.get<IChannel>(`${API_URL}/channels/${id}`, {
+        const response = await axios.get<IChannel>(`${API_URL}/channel/${id}`, {
             headers: authHeader(),
         });
 

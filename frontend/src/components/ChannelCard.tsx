@@ -24,7 +24,7 @@ const ChannelCard = observer(({ channel }: Props) => {
       {contextHolder}
       {channel ? (
         <div className="channel-card">
-          <Link to={`/channels/${channel.id}`}>
+          <Link to={`/dashboard/channel/${channel.id}`}>
             <div className="prev">
               <img
                 className="channel-logo"
