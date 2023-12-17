@@ -45,7 +45,7 @@ const SignUp = () => {
                         onFinish={onFinish}
                     >
                         <Form.Item
-                            name='email'
+                            name='login'
                             rules={[
                                 {
                                     required: true,
