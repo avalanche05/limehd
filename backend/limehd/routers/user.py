@@ -4,9 +4,9 @@ from requests import Session
 from limehd import schemas, crud, serializers, models
 from limehd.dependencies import get_db, current_user
 from limehd.schemas import LoginSchema
-from limehd.crud import get_by_email
+from limehd.crud import get_by_email, create_user, create_token
 from limehd.models import User
-from limehd.serializers import serialize_user
+from limehd.serializers import get_token
 
 
 user_router = APIRouter(
@@ -31,29 +31,21 @@ def get_user_subsctiptions(response: Response, user: User = Depends(current_user
 
 
 @user_router.post('/register')
-def register(login_schema: LoginSchema, user: User = Depends(current_user), db: Session = Depends(get_db)):
+def register(login_schema: LoginSchema, db: Session = Depends(get_db)):
     user_by_email = get_by_email(db, login_schema.login)
     if not user_by_email:
-        user_by_email = User(
-            email=login_schema.login,
-        )
-        user_by_emails.tokens.append()
-        user_by_email.set_password(login_schema.password)
-        db.add(user_by_email)
-        db.commit()
-        db.refresh(user_by_email)
-        return serialize_user(user_by_email)
+        user = create_user(db, login_schema)
+        token = create_token(db, user.id)
+        return get_token(token)
     else:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Логин уже зарегистрирован")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Вы уже зарегистрированы")
 
 
 @user_router.post("/login")
-def login(login_schema: LoginSchema, user: models.User = Depends(current_user), db: Session = Depends(get_db)):
-    user_by_email = get_by_email(db, login_schema.login)
-    if user_by_email and user_by_email.check_password(login_schema.password):
-        user_by_email.fingerprint = user.fingerprint
-        db.commit()
-        db.refresh(user_by_email)
-        return serialize_user(user_by_email)
+def login(login_schema: LoginSchema, db: Session = Depends(get_db)):
+    user = get_by_email(db, login_schema.login)
+    if user and user.check_password(login_schema.password):
+        token = create_token(db, user.id)
+        return get_token(token)
     else:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Неправильный логин или пароль")

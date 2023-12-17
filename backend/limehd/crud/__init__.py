@@ -3,3 +3,4 @@ from .channel import *
 from .users import *
 from .genre import *
 from .category import *
+from .token import *

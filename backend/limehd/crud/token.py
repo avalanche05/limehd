@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from limehd.models import Token
 from limehd.utils.token import generate_bearer_token
-from limehd import errors
+from limehd import error
 
 
 def create_token(db: Session, user_id: int) -> Token:
