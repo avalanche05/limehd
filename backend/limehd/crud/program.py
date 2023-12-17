@@ -5,10 +5,11 @@ from sqlalchemy.orm import Session
 from limehd import models, schemas
 from datetime import datetime
 
+from limehd.models import Program
+
 
 def get_program_by_program_id(db: Session, id: int) -> models.Program:
     program = db.query(models.Program).filter(models.Program.id == id).first()
-
     return program
 
 
@@ -47,3 +48,11 @@ def add_subscriber_to_program(db: Session, user_id: int, program_id: int):
     if program and user:
         program.subscribers.append(user)
         db.commit()
+
+
+def update_program_rating(db: Session, program: Program, mark: int):
+    program.votes_count += 1
+    program.rating = ((float(program.rating) * (program.votes_count - 1)) + int(mark)) / program.votes_count
+
+    db.commit()
+    return program

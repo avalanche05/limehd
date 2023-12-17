@@ -5,6 +5,7 @@ from limehd import schemas, serializers, models
 
 
 def get_program(db_program: db_model_program.Program, is_empty_streams: bool = False) -> schemas.Program:
+    print(db_program.id, db_program.name, db_program.start, db_program.finish, db_program.rating, db_program.genre, db_program.category, db_program.image, db_program.streams)
     program = schemas.Program(
         id=db_program.id,
         name=db_program.name,
@@ -15,9 +16,8 @@ def get_program(db_program: db_model_program.Program, is_empty_streams: bool = F
         genre=db_program.genre,
         category=db_program.category,
         image=db_program.image,
-        streams=db_program.streams if not is_empty_streams else []
+        streams=[serializers.get_stream(stream) for stream in db_program.streams] if not is_empty_streams else [],
     )
-
     return program
 
 
