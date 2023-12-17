@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body, Depends, HTTPException, Response, Header
+from fastapi import APIRouter, Body, Depends, HTTPException, Response, Header, Request
 from requests import Session
 from datetime import datetime
 
@@ -16,7 +16,7 @@ def get_all_headers(headers: dict = Depends(lambda x: x.headers)):
 
 
 @program_router.get(path="")
-def get_program(headers: dict = Depends(get_all_headers),
+def get_program(request: Request,
                 genre: str | None = None,
                 category: str | None = None,
                 start: datetime | None = None,
@@ -24,6 +24,7 @@ def get_program(headers: dict = Depends(get_all_headers),
                 search_name: str | None = None,
                 db: Session = Depends(get_db),
                 ) -> list[schemas.Program]:
+    headers = request.headers
     if 'Authorization' in headers:
         bearer = headers['Authorization'].split()[1]
         user = crud.read_user_by_token(db, bearer)
@@ -39,15 +40,22 @@ def get_program(headers: dict = Depends(get_all_headers),
 
 
 @program_router.get(path="/{id}")
-def get_program_by_program_id(id: int, db: Session = Depends(get_db)) -> schemas.Program:
+def get_program_by_program_id(request: Request, id: int, db: Session = Depends(get_db)) -> schemas.Program:
+    headers = request.headers
+    if 'Authorization' in headers:
+        bearer = headers['Authorization'].split()[1]
+        user = crud.read_user_by_token(db, bearer)
+        user_id = user.id
+    else:
+        user_id = -1
     program = crud.get_program_by_program_id(db, id)
-    return serializers.get_program(program)
+    return serializers.get_program(program, user_id)
 
 
 @program_router.post(path="/{id}/rating")
 def add_program_rating(
         program_id: int,
-        mark: int,
+        mark: float,
         db: Session = Depends(get_db),
 ) -> schemas.Program:
     program = crud.program.get_program_by_program_id(db, program_id)

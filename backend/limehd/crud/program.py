@@ -81,8 +81,8 @@ def get_favorite_programs(db: Session, user_id: int):
     return user.programs
 
 
-def update_program_rating(db: Session, program: Program, mark: int):
+def update_program_rating(db: Session, program: Program, mark: float):
     program.votes_count += 1
-    program.rating = ((float(program.rating) * (program.votes_count - 1)) + int(mark)) / program.votes_count
+    program.rating = ((float(program.rating) * (program.votes_count - 1)) + float(mark)) / program.votes_count
     db.commit()
     return program

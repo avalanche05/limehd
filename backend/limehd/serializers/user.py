@@ -6,6 +6,7 @@ import json
 from .program import get_programs
 from .channel import get_channels
 
+
 def get_user(db_user: db_model_user.User) -> schemas.User:
     user = schemas.User(
         id=db_user.id,
