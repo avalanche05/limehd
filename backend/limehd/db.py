@@ -5,7 +5,6 @@ from sqlalchemy.engine import create_engine
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import sessionmaker, Mapped, mapped_column
 
-from .config import get_settings
 
 db_url = f"postgresql://postgres:limehd@chat.nlogn.info:9999/postgres"
 logging.debug(f"db_url: {db_url}")
