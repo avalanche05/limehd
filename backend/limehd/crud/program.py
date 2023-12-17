@@ -36,7 +36,7 @@ def get_programs(
     if category:
         query = query.filter(models.Program.category == category)
 
-    programs = query.limit.all()
+    programs = query.all()
 
     if search_name:
         programs = sorted(programs, key=lambda x: comparator(x.name, search_name))
