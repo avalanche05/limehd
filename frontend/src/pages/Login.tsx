@@ -55,7 +55,7 @@ const Login = () => {
                         Телепрограмма
                     </Typography.Title>
                     <Alert
-                        message='Тестовый пользователь для входа. Login: 1, Password: 1. Чтобы продолжить без авторизации, нажмите на кнопку "Продолжить без авторизации".'
+                        message='Тестовый пользователь для входа. Login: 1, Password: 1. Чтобы продолжить без авторизации, нажмите на кнопку "Продолжить через тестового пользователя".'
                         type='info'
                     />
 
@@ -72,7 +72,7 @@ const Login = () => {
                             <Input
                                 size='large'
                                 prefix={<UserOutlined className='site-form-item-icon' />}
-                                placeholder='Номер телефона'
+                                placeholder='Email'
                             />
                         </Form.Item>
                         <Form.Item

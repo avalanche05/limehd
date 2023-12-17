@@ -44,7 +44,6 @@ def get_channels(
         desired_timezone = pytz.timezone('Europe/Moscow')
         moscow_datetime = finish.astimezone(desired_timezone)
         finish = moscow_datetime.replace(tzinfo=None)
-
         for channel in channels:
             streams = []
             for stream in channel.streams:
@@ -61,6 +60,7 @@ def add_subscriber_to_channel(db: Session, user_id: int, channel_id: int):
 
     if channel and user:
         channel.subscribers.append(user)
+        db.add(channel)
         db.commit()
 
 
