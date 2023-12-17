@@ -42,35 +42,33 @@ const Search = observer(() => {
     return (
         <>
             <section className='search-response'>
-                {rootStore.search ? (
-                    <div className='container search__container'>
-                        <span className='title'>
-                            Вот что мы нашли по запросу: "{rootStore.search}"
-                        </span>
-                        <div className='tvshow-response'>
-                            <div className='title category-title category-title-programms'>
-                                Программы
-                            </div>
-                            <div className='row'>
-                                {rootStore.filteredPrograms.map((program) => {
-                                    return (
-                                        <div className='card-place'>
-                                            <ProgrammCard program={program} />
-                                        </div>
-                                    );
-                                })}
-                            </div>
+                {/* {rootStore.search  ? ( */}
+                <div className='container search__container'>
+                    <span className='title'>Вот что мы нашли по запросу: "{rootStore.search}"</span>
+                    <div className='tvshow-response'>
+                        <div className='title category-title category-title-programms'>
+                            Программы
                         </div>
-                        <div className='channel-response'>
-                            <div className='title category-title'>Каналы</div>
-                            <ChannelsSimplifyLayout />
+                        <div className='row'>
+                            {rootStore.filteredPrograms.map((program) => {
+                                return (
+                                    <div className='card-place'>
+                                        <ProgrammCard program={program} />
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
-                ) : (
+                    <div className='channel-response'>
+                        <div className='title category-title'>Каналы</div>
+                        <ChannelsSimplifyLayout />
+                    </div>
+                </div>
+                {/* ) : (
                     <span className='title' style={{ padding: 20, position: 'relative', top: 20 }}>
                         Для поиска введите запрос
                     </span>
-                )}
+                )} */}
             </section>
         </>
     );
