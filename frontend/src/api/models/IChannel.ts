@@ -21,6 +21,7 @@ export interface IProgram {
     id: number;
     name: string;
     rating: number;
+    description: string;
     is_favorite: boolean;
     genre: string;
     category: string;

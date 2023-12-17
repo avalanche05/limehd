@@ -14,7 +14,7 @@ export class ProgramsApiService {
     }
 
     async getProgram(id: number) {
-        const response = await axios.get<IProgram>(`${API_URL}/programs/${id}`, {
+        const response = await axios.get<IProgram>(`${API_URL}/program/${id}`, {
             headers: authHeader(),
         });
 

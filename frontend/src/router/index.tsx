@@ -54,7 +54,7 @@ export const router = createBrowserRouter([
                 element: <Channel />,
             },
             {
-                path: '/dashboard/programm',
+                path: '/dashboard/program/:id',
                 element: <Programm />,
             },
         ],
