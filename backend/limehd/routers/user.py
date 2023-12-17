@@ -63,9 +63,10 @@ def get_user_subsctiptions(response: Response,
     response.set_cookie(key='fingerprint', value=cookie)
 
     favorite_programs = crud.get_favorite_programs(db, user)
-    favorite_streams = crud.get_favorite_streams(db, favorite_programs)
+    favorite_streams_ids = crud.get_favorite_streams(db, favorite_programs)
     print('favorite', favorite_programs)
     print(user.id)
-    for stream in favorite_streams:
-        print(stream)
-    return favorite_streams
+    for stream_id in favorite_streams_ids:
+        print(stream_id)
+    favorite_streams = crud.get_streams_by_stream_ids(db, favorite_streams_ids)
+    return serializers.get_streams(favorite_streams)
