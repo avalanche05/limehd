@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Response
+from fastapi import APIRouter, Depends, Response, Request
 from sqlalchemy.orm import Session
 
 from limehd import schemas, crud, serializers, models
@@ -13,18 +13,23 @@ channel_router = APIRouter(
 
 @channel_router.get(path="")
 def get_channels(
-        response: Response,
+        request: Request,
         search_name: str = None,
         start: datetime = None,
         finish: datetime = None,
-        user: models.User = Depends(current_user),
         db: Session = Depends(get_db),
 ) -> list[schemas.Channel]:
-    cookie = user.fingerprint
-    response.set_cookie(key="fingerprint", value=cookie, samesite="None", secure=True)
+    headers = request.headers
+    print(headers)
+    if 'Authorization' in headers:
+        bearer = headers['Authorization'].split()[1]
+        user = crud.read_user_by_token(db, bearer)
+        user_id = user.id
+    else:
+        user_id = -1
 
     channels = crud.get_channels(db, search_name=search_name, start=start, finish=finish)
-    return serializers.get_channels(channels, user.id)
+    return serializers.get_channels(channels, user_id)
 
 
 @channel_router.get(path="/{channel_id}")
