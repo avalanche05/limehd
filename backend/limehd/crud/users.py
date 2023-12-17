@@ -26,3 +26,8 @@ def check_cookie(db: Session, cookie: str) -> User | None:
     if user:
         return user.fingerprint
     return None
+
+
+def get_by_email(db: Session, email: str) -> User | None:
+    user = db.query(User).filter(User.email == email).first()
+    return user

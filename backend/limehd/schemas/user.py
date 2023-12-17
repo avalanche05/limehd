@@ -6,13 +6,21 @@ from .program import Program
 
 class User(BaseModel):
     id: int
-    email: str
-    hashed_password: str
+    email: str | None
+    hashed_password: str | None
     fingerprint: str
-    favorite_programs: list[Program]
-    favorite_channels: list[Channel]
+    favorite_programs: list[Program] | None
+    favorite_channels: list[Channel] | None
+
+
+class User2(BaseModel):
+    id: int
+    email: str
+    fingerprint: str
+    favorite_programs: list[Program] | None
+    favorite_channels: list[Channel] | None
 
 
 class LoginSchema(BaseModel):
-    login: str | None
-    password: str | None
+    login: str
+    password: str 
