@@ -7,8 +7,6 @@ class Program(BaseModel):
     id: int
     name: str
     description: str
-    start: datetime
-    finish: datetime
     rating: float
     genre: str
     category: str

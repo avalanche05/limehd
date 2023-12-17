@@ -12,26 +12,26 @@ program_router = APIRouter(
 
 
 @program_router.get(path="")
-def get_program(response: Response, user: models.User = Depends(current_user),
-                name: str | None = None,
+def get_program(response: Response,
                 genre: str | None = None,
                 category: str | None = None,
                 start: datetime | None = None,
                 finish: datetime | None = None,
                 search_name: str | None = None,
-                db: Session = Depends(get_db)) -> schemas.Channel:
-    db_programs = crud.get_programs(db, start_date=start,
-                                    finish_date=finish,
+                db: Session = Depends(get_db),
+                user: models.User = Depends(current_user),
+                ) -> list[schemas.Program]:
+    db_programs = crud.get_programs(db, search_name=search_name,
                                     genre=genre,
                                     category=category,
-                                    search_name=search_name)
+                                    start=start,
+                                    finish=finish)
+    return serializers.get_programs(db_programs, user.id)
 
-    return serializers.get_program(sprogram)
 
-
-@program_router.get(path="/{id}")
-def get_program_by_program_id(id: int, db: Session = Depends(get_db)) -> schemas.Program:
-    program = crud.get_program_by_program_id(db, id)
+@program_router.get(path="/{program_id}")
+def get_program_by_program_id(program_id: int, db: Session = Depends(get_db)) -> schemas.Program:
+    program = crud.get_program_by_program_id(db, program_id)
 
     return serializers.get_program(program)
 
@@ -42,7 +42,6 @@ def add_program_rating(
         mark: int,
         db: Session = Depends(get_db),
 ) -> schemas.Program:
-
     program = crud.program.get_program_by_program_id(db, program_id)
     marked_program = crud.update_program_rating(db, program, mark)
     return serializers.get_program(marked_program)

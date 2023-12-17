@@ -1,12 +1,19 @@
 from typing import List, Type
 
+import pytz as pytz
 from sqlalchemy import func, and_
 from sqlalchemy.orm import Session
 from limehd import serializers
 from limehd import models, schemas
 from datetime import datetime
-
+from Levenshtein import distance
 from limehd.models import Program
+
+
+def comparator(item: str, search_name: str, threshold: int = 3) -> list:
+    item = item.lower().strip()
+    search_name = search_name.lower().strip()
+    return [distance(item, search_name), abs(len(item) - len(search_name)), len(item) - len(search_name)]
 
 
 def get_program_by_program_id(db: Session, id: int) -> models.Program:
@@ -16,29 +23,42 @@ def get_program_by_program_id(db: Session, id: int) -> models.Program:
 
 def get_programs(
         db: Session,
-        start_date: datetime = None,
-        finish_date: datetime = None,
+        start: datetime = None,
+        finish: datetime = None,
         genre: str = None,
         category: str = None,
         search_name: str = None
 ):
     query = db.query(models.Program)
 
-    if start_date and finish_date:
-        query = query.filter(models.Program.streams.any(
-            models.Stream.start >= start_date,
-            models.Stream.finish <= finish_date,
-        ))
-
     if genre:
         query = query.filter(models.Program.genre == genre)
     if category:
         query = query.filter(models.Program.category == category)
 
+    programs = query.limit(100).all()
     if search_name:
-        query = query.filter(models.Program.name.ilike(f"%{search_name}%"))
+        programs = sorted(programs, key=lambda x: comparator(x.name, search_name))
+        programs = [program for program in programs if
+                    distance(program.name.lower().strip(), search_name.lower().strip()) <= 3]
+        if distance(programs[0].name.lower().strip(), search_name.lower().strip()) == 0:
+            programs = programs[:1]
 
-    programs = query.all()
+    if start and finish:
+        desired_timezone = pytz.timezone('Europe/Moscow')
+        moscow_datetime = start.astimezone(desired_timezone)
+        start = moscow_datetime.replace(tzinfo=None)
+
+        desired_timezone = pytz.timezone('Europe/Moscow')
+        moscow_datetime = finish.astimezone(desired_timezone)
+        finish = moscow_datetime.replace(tzinfo=None)
+        for program in programs:
+            streams = []
+            for stream in program.streams:
+                if stream.start >= start and stream.finish <= finish:
+                    streams.append(stream)
+            program.streams = streams
+
     return programs
 
 
