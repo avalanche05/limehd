@@ -5,12 +5,9 @@ from limehd.crud import check_cookie, create_user_without_fingerprint, get_by_us
 from limehd.models import User
 
 
-async def get_db() -> Session:
-    db = SessionLocal()
-    try:
+def get_db():
+    with SessionLocal() as db:
         yield db
-    finally:
-        db.close()
 
 
 async def current_user(
