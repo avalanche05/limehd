@@ -59,6 +59,5 @@ def get_favorite_programs(db: Session, user: models.User) -> List[models.Program
 def update_program_rating(db: Session, program: Program, mark: int):
     program.votes_count += 1
     program.rating = ((float(program.rating) * (program.votes_count - 1)) + int(mark)) / program.votes_count
-
     db.commit()
     return program

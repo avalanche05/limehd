@@ -19,7 +19,7 @@ def get_user(db_user: db_model_user.User) -> schemas.User:
 
 
 def serialize_user(db_user: db_model_user.User) -> schemas.User2:
-    print(db_user.id, db_user.email, db_user.fingerprint, db_user.programs, db_user.channels)
+    # print(db_user.id, db_user.email, db_user.fingerprint, db_user.programs, db_user.channels)
     user = schemas.User2(
         id=db_user.id,
         email=db_user.email,
