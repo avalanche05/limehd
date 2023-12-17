@@ -100,16 +100,14 @@ const ChannelCard = observer(({ channel }: Props) => {
               return (
                 <div className="schedule-item">
                   <div className="time">
-                    <b style={{ fontSize: 12 }}>
-                      {new Date(schedule.start).getHours()}:
-                      {convertOneDigitStringToTwoDigits(
-                        new Date(schedule.start).getMinutes()
-                      )}
-                      -{new Date(schedule.finish).getHours()}:
-                      {convertOneDigitStringToTwoDigits(
-                        new Date(schedule.finish).getMinutes()
-                      )}
-                    </b>
+                    {new Date(schedule.start).getHours()}:
+                    {convertOneDigitStringToTwoDigits(
+                      new Date(schedule.start).getMinutes()
+                    )}
+                    -{new Date(schedule.finish).getHours()}:
+                    {convertOneDigitStringToTwoDigits(
+                      new Date(schedule.finish).getMinutes()
+                    )}
                   </div>
                   <div className="tvshow-name">{schedule.program?.name}</div>
                 </div>
