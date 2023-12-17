@@ -15,7 +15,7 @@ class User(BaseModel):
 
 class User2(BaseModel):
     id: int
-    email: str
+    email: str | None
     fingerprint: str
     favorite_programs: list[Program] | None
     favorite_channels: list[Channel] | None

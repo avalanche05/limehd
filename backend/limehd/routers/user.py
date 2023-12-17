@@ -41,7 +41,7 @@ def register(login_schema: LoginSchema, user: models.User = Depends(current_user
         db.refresh(user_by_email)
         return serialize_user(user_by_email)
     else:
-        return HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Логин уже зарегистрирован")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Логин уже зарегистрирован")
 
 
 @user_router.post("/login")

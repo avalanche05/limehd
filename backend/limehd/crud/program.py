@@ -6,10 +6,11 @@ from limehd import serializers
 from limehd import models, schemas
 from datetime import datetime
 
+from limehd.models import Program
+
 
 def get_program_by_program_id(db: Session, id: int) -> models.Program:
     program = db.query(models.Program).filter(models.Program.id == id).first()
-
     return program
 
 
@@ -54,3 +55,11 @@ def get_favorite_programs(db: Session, user: models.User) -> List[models.Program
     programs = user.programs
     print('crud', user.id, programs)
     return programs
+
+
+def update_program_rating(db: Session, program: Program, mark: int):
+    program.votes_count += 1
+    program.rating = ((float(program.rating) * (program.votes_count - 1)) + int(mark)) / program.votes_count
+
+    db.commit()
+    return program
