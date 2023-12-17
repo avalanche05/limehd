@@ -16,6 +16,13 @@ user_router = APIRouter(
 )
 
 
+@user_router.get(path="")
+def profile_user(user: models.User = Depends(current_user),
+                 db: Session = Depends(get_db)
+                 ) -> schemas.User2:
+    return serializers.serialize_user(user)
+
+
 @user_router.post('/register')
 def register(login_schema: LoginSchema, db: Session = Depends(get_db)):
     user_by_email = get_by_email(db, login_schema.login)

@@ -34,15 +34,19 @@ def get_channels(
 
 @channel_router.get(path="/{channel_id}")
 def get_channel_by_channel_id(
-        response: Response,
+        request: Request,
         channel_id: int,
-        user: models.User = Depends(current_user),
         db: Session = Depends(get_db),
 ) -> schemas.Channel:
-    cookie = user.fingerprint
-    response.set_cookie(key="fingerprint", value=cookie, samesite="None", secure=True)
+    headers = request.headers
+    if 'Authorization' in headers:
+        bearer = headers['Authorization'].split()[1]
+        user = crud.read_user_by_token(db, bearer)
+        user_id = user.id
+    else:
+        user_id = -1
     channel = crud.get_channel_by_channel_id(db, id=channel_id)
-    return serializers.get_channel(channel, user.id)
+    return serializers.get_channel(channel, user_id)
 
 
 @channel_router.post(path="/{channel_id}/rating")
