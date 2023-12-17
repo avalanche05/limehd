@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body, Depends, HTTPException, Response, Header
+from fastapi import APIRouter, Body, Depends, HTTPException, Response, Header, Request
 from requests import Session
 from datetime import datetime
 
@@ -16,7 +16,7 @@ def get_all_headers(headers: dict = Depends(lambda x: x.headers)):
 
 
 @program_router.get(path="")
-def get_program(headers: dict = Depends(get_all_headers),
+def get_program(request: Request,
                 genre: str | None = None,
                 category: str | None = None,
                 start: datetime | None = None,
@@ -24,6 +24,7 @@ def get_program(headers: dict = Depends(get_all_headers),
                 search_name: str | None = None,
                 db: Session = Depends(get_db),
                 ) -> list[schemas.Program]:
+    headers = request.headers
     if 'Authorization' in headers:
         bearer = headers['Authorization'].split()[1]
         user = crud.read_user_by_token(db, bearer)
