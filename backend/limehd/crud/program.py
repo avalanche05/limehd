@@ -41,7 +41,8 @@ def get_programs(
     if search_name:
         programs = sorted(programs, key=lambda x: comparator(x.name, search_name))
         programs = [program for program in programs if
-                    distance(program.name.lower().strip(), search_name.lower().strip()) <= 3]
+                    distance(program.name.lower().strip(),
+                             search_name.lower().strip()) <= 15 and search_name.lower().strip() in program.name.lower().strip()]
         if distance(programs[0].name.lower().strip(), search_name.lower().strip()) == 0:
             programs = programs[:1]
 
