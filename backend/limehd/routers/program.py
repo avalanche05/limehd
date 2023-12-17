@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body, Depends, HTTPException, Response
+from fastapi import APIRouter, Body, Depends, HTTPException, Response, Header, Request
 from requests import Session
 from datetime import datetime
 
@@ -11,34 +11,51 @@ program_router = APIRouter(
 )
 
 
+def get_all_headers(headers: dict = Depends(lambda x: x.headers)):
+    return headers
+
+
 @program_router.get(path="")
-def get_program(response: Response,
+def get_program(request: Request,
                 genre: str | None = None,
                 category: str | None = None,
                 start: datetime | None = None,
                 finish: datetime | None = None,
                 search_name: str | None = None,
                 db: Session = Depends(get_db),
-                user: models.User = Depends(current_user),
                 ) -> list[schemas.Program]:
+    headers = request.headers
+    if 'Authorization' in headers:
+        bearer = headers['Authorization'].split()[1]
+        user = crud.read_user_by_token(db, bearer)
+        user_id = user.id
+    else:
+        user_id = -1
     db_programs = crud.get_programs(db, search_name=search_name,
                                     genre=genre,
                                     category=category,
                                     start=start,
                                     finish=finish)
-    return serializers.get_programs(db_programs, user.id)
+    return serializers.get_programs(db_programs, user_id)
 
 
 @program_router.get(path="/{id}")
-def get_program_by_program_id(id: int, db: Session = Depends(get_db)) -> schemas.Program:
+def get_program_by_program_id(request: Request, id: int, db: Session = Depends(get_db)) -> schemas.Program:
+    headers = request.headers
+    if 'Authorization' in headers:
+        bearer = headers['Authorization'].split()[1]
+        user = crud.read_user_by_token(db, bearer)
+        user_id = user.id
+    else:
+        user_id = -1
     program = crud.get_program_by_program_id(db, id)
-    return serializers.get_program(program)
+    return serializers.get_program(program, user_id)
 
 
 @program_router.post(path="/{id}/rating")
 def add_program_rating(
         program_id: int,
-        mark: int,
+        mark: float,
         db: Session = Depends(get_db),
 ) -> schemas.Program:
     program = crud.program.get_program_by_program_id(db, program_id)

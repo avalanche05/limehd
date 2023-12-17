@@ -10,7 +10,6 @@ from limehd.crud import get_by_email, create_user, create_token
 from limehd.models import User
 from limehd.serializers import get_token
 
-
 user_router = APIRouter(
     prefix="/user",
     tags=["User"],
@@ -18,23 +17,12 @@ user_router = APIRouter(
 
 
 @user_router.get(path="")
-def get_user(response: Response, user: User = Depends(current_user),
-             db: Session = Depends(get_db)
-             ) -> schemas.User:
-    cookie = user.fingerprint
-    response.set_cookie(key="fingerprint", value=cookie, samesite="None", secure=True)
-    return serializers.get_user(user)
+def profile_user(user: models.User = Depends(current_user),
+                 db: Session = Depends(get_db)
+                 ) -> schemas.User2:
+    return serializers.serialize_user(user)
 
 
-<<<<<<< HEAD
-=======
-@user_router.get(path="/subscriptions")
-def get_user_subsctiptions(response: Response, user: User = Depends(current_user), db: Session = Depends(get_db)):
-    cookie = user.fingerprint
-    response.set_cookie(key='fingerprint', value=cookie)
-
-
->>>>>>> 8c05ea0e5b996c44141d623de4238be4aff27b6c
 @user_router.post('/register')
 def register(login_schema: LoginSchema, db: Session = Depends(get_db)):
     user_by_email = get_by_email(db, login_schema.login)
