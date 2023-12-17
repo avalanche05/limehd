@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from limehd import models, schemas
 from datetime import datetime
 from Levenshtein import distance
+import pytz
 
 
 def get_channel_by_channel_id(db: Session, id: int) -> models.Channel:
@@ -36,6 +37,14 @@ def get_channels(
             channels = channels[:1]
 
     if start and finish:
+        desired_timezone = pytz.timezone('Europe/Moscow')
+        moscow_datetime = start.astimezone(desired_timezone)
+        start = moscow_datetime.replace(tzinfo=None)
+
+        desired_timezone = pytz.timezone('Europe/Moscow')
+        moscow_datetime = finish.astimezone(desired_timezone)
+        finish = moscow_datetime.replace(tzinfo=None)
+
         for channel in channels:
             streams = []
             for stream in channel.streams:
