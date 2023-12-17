@@ -45,7 +45,6 @@ def register(login_schema: LoginSchema, user: models.User = Depends(current_user
 @user_router.post("/login")
 def login(login_schema: LoginSchema, user: models.User = Depends(current_user), db: Session = Depends(get_db)):
     user_by_email = get_by_email(db, login_schema.login)
-    print(user_by_email)
     if user_by_email and user_by_email.check_password(login_schema.password):
         user_by_email.fingerprint = user.fingerprint
         db.commit()
@@ -60,13 +59,9 @@ def get_user_subsctiptions(response: Response,
                            user: models.User = Depends(current_user),
                            db: Session = Depends(get_db)):
     cookie = user.fingerprint
-    response.set_cookie(key="fingerprint", value=cookie, samesite="None", secure=True)
+    response.set_cookie(key="fingerprint", value=cookie, samesite="None")
 
     favorite_programs = crud.get_favorite_programs(db, user)
     favorite_streams_ids = crud.get_favorite_streams(db, favorite_programs)
-    print('favorite', favorite_programs)
-    print(user.id)
-    for stream_id in favorite_streams_ids:
-        print(stream_id)
     favorite_streams = crud.get_streams_by_stream_ids(db, favorite_streams_ids)
     return serializers.get_streams(favorite_streams)
