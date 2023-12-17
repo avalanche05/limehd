@@ -7,4 +7,4 @@ class Stream(BaseModel):
     channel_id: int
     start: datetime
     finish: datetime
-    program_id: int
+    program: 'Program'

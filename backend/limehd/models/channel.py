@@ -4,7 +4,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from limehd.db import BaseSqlModel
 from .channel_user import association_table_channel_user
-from .program_channel import association_table_channel_program
 
 
 class Channel(BaseSqlModel):
@@ -23,8 +22,3 @@ class Channel(BaseSqlModel):
         back_populates='channels'
     )
     streams: Mapped[list['Stream']] = relationship('Stream', back_populates='channel')
-
-    programs: Mapped[list['Program']] = relationship(
-        secondary=association_table_channel_program,
-        back_populates='channels'
-    )
